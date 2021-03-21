@@ -40,6 +40,8 @@ public class ThirdPersonController : PortalTraveller
 
     private int _layerMask;
 
+    Animator animator;
+
     private bool _enteredPortal = false;
     private bool _exitedPortal = false;
     private bool _insidePortal = false;
@@ -80,6 +82,9 @@ public class ThirdPersonController : PortalTraveller
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
         }
+
+        // initialise animator
+        animator = GetComponentInChildren<Animator>();
 
         // initialize global velocities and inputs 
         _playerVel = Vector3.zero;
@@ -122,6 +127,9 @@ public class ThirdPersonController : PortalTraveller
     {
         // check whether player is running or walking 
         float speed = (Input.GetKey(KeyCode.LeftShift)) ? runningSpeed : walkingSpeed;
+
+        // Determine walking or running animation
+        animator.SetFloat("Speed", speed);
 
         // 
         Vector3 playerLocal = tower.transform.InverseTransformPoint(transform.position);
@@ -169,6 +177,7 @@ public class ThirdPersonController : PortalTraveller
             _playerVel = Vector3.zero;
             _walking = _running = false;
             _idle = true;
+            animator.SetFloat("Speed", 0);
         }
     }
 
@@ -196,6 +205,8 @@ public class ThirdPersonController : PortalTraveller
             _verticalVel -= gravity;
             _playerVel.y = _verticalVel;
         }
+
+        animator.SetFloat("Vertical Speed", _verticalVel);
     }
 
     void Update()
