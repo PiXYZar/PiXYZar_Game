@@ -30,14 +30,13 @@ public class TickAI : MonoBehaviour
         //distanceToGoal = 100;
 
 
-        agent = GetComponent<NavMeshAgent>();
-        animator = GetComponentInChildren<Animator>();
+        agent = GetComponentInParent<NavMeshAgent>();
+        animator = GetComponent<Animator>();
     }
 
     private void Update()
     {
         // Only update the path planning of the penguin every couple of frames to slow down the penguins movement
-        agent = GetComponent<NavMeshAgent>();
         if (updatePath <= 0)
         {
             // For when the penguin is fleeing from the player snowball instead of normal path planning
