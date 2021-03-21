@@ -48,6 +48,15 @@ public class ThirdPersonController : PortalTraveller
     public bool ExitedPortal { get { return _exitedPortal; } set { _exitedPortal = value; } }
     public bool InsidePortal { get { return _insidePortal; } set { _insidePortal = value; } }
 
+    private bool _walking;
+    private bool _running;
+    private bool _jumping;
+    private bool _idle;
+    public bool Walking { get { return _walking; } }
+    public bool Running { get { return _running; } }
+    public bool Jumping { get { return _jumping; } }
+    public bool Idle { get { return _idle; } }
+
     void Awake()
     {
         // check if asset has rigid body, if yes, store it 
@@ -81,6 +90,9 @@ public class ThirdPersonController : PortalTraveller
         _layerMask = ~(1 << LayerMask.NameToLayer("Player"));
 
         _towerCentre = tower.GetComponent<Renderer>().bounds.center;
+
+        _idle = true;
+        _walking = _running = _jumping = false;
     }
 
     bool IsGrounded()
@@ -145,9 +157,19 @@ public class ThirdPersonController : PortalTraveller
             Vector3 forward = new Vector3(xDir * zVel, 0.0f, zDir * zVel);
             Vector3 sideways = targetRotation * new Vector3(xDir * xVel, 0.0f, zDir * xVel);
             _playerVel = (forward + sideways).normalized * speed;
+
+            if (speed == walkingSpeed)
+                _walking = true;
+            if (speed == runningSpeed)
+                _running = true;
+            _idle = false;
         } 
         else
+        {
             _playerVel = Vector3.zero;
+            _walking = _running = false;
+            _idle = true;
+        }
     }
 
     void Jump()
@@ -160,11 +182,13 @@ public class ThirdPersonController : PortalTraveller
         if (_inputY > 0 && IsGrounded())
         {
             _playerVel.y = _verticalVel = jumpingSpeed;
+            _jumping = true;
         }
         // player is grounded and jump button not pressed -> don't jump
         else if (_inputY == 0 && IsGrounded())
         {
             _playerVel.y = _verticalVel = 0.0f;
+            _jumping = false;
         }
         // player is in the air -> decrease vertical velocity
         else
