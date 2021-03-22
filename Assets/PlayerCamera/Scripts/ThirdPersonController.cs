@@ -4,24 +4,14 @@ using UnityEngine;
 
 public class ThirdPersonController : PortalTraveller
 {
-    public class RigidbodyProperties
-    {
-        public float angularDrag;
-        public Vector3 angularVelocity;
-        public float drag;
-        public Vector3 inertiaTensor;
-        public Quaternion inertiaTensorRotation;
-        //public double velocity;
-    }
-
     public GameObject tower;
-
-    public RigidbodyProperties rbProperties = new RigidbodyProperties();
 
     public float userInputDelay = 0.1f;
 
     public float walkingSpeed = 3;
     public float runningSpeed = 6;
+
+    public float rotationSpeed = 2.5f;
 
     public float gravity = 0.75f;
     public float jumpingSpeed = 50f;
@@ -40,6 +30,9 @@ public class ThirdPersonController : PortalTraveller
 
     private int _layerMask;
 
+    private bool _insideTower;
+    public bool InsideTower { get { return _insideTower; } }
+
     Animator animator;
 
     private bool _enteredPortal = false;
@@ -49,15 +42,8 @@ public class ThirdPersonController : PortalTraveller
     public bool EnteredPortal { get { return _enteredPortal; } set { _enteredPortal = value; } }
     public bool ExitedPortal { get { return _exitedPortal; } set { _exitedPortal = value; } }
     public bool InsidePortal { get { return _insidePortal; } set { _insidePortal = value; } }
-
-    private bool _walking;
-    private bool _running;
-    private bool _jumping;
-    private bool _idle;
-    public bool Walking { get { return _walking; } }
-    public bool Running { get { return _running; } }
-    public bool Jumping { get { return _jumping; } }
-    public bool Idle { get { return _idle; } }
+    
+    private Transform _modelTransform;
 
     void Awake()
     {
@@ -96,8 +82,10 @@ public class ThirdPersonController : PortalTraveller
 
         _towerCentre = tower.GetComponent<Renderer>().bounds.center;
 
-        _idle = true;
-        _walking = _running = _jumping = false;
+        _insideTower = IsInsideTower();
+
+        _modelTransform = gameObject.transform.GetChild(0);
+
     }
 
     bool IsGrounded()
@@ -123,6 +111,19 @@ public class ThirdPersonController : PortalTraveller
         }
     }
 
+    bool IsInsideTower()
+    {
+        // local position of player wrt tower centre 
+        Vector3 playerLocal = tower.transform.InverseTransformPoint(transform.position);
+
+        // check if player is inside tower 
+        if (playerLocal.x < tower.GetComponent<MeshFilter>().mesh.bounds.extents.x &&
+            playerLocal.z < tower.GetComponent<MeshFilter>().mesh.bounds.extents.z)
+            return true;
+
+        return false;
+    }
+
     void Translate()
     {
         // check whether player is running or walking 
@@ -131,9 +132,10 @@ public class ThirdPersonController : PortalTraveller
         // Determine walking or running animation
         animator.SetFloat("Speed", speed);
 
-        // 
+        // local position of player wrt tower centre 
         Vector3 playerLocal = tower.transform.InverseTransformPoint(transform.position);
-        //Debug.Log(playerRel2Tower);
+
+        // calculate x and z values for player movement 
         float hypotenuse = new Vector2(playerLocal.x, playerLocal.z).magnitude;
         float xDir = -playerLocal.z / hypotenuse;
         float zDir = playerLocal.x / hypotenuse;
@@ -165,18 +167,10 @@ public class ThirdPersonController : PortalTraveller
             Vector3 forward = new Vector3(xDir * zVel, 0.0f, zDir * zVel);
             Vector3 sideways = targetRotation * new Vector3(xDir * xVel, 0.0f, zDir * xVel);
             _playerVel = (forward + sideways).normalized * speed;
-
-            if (speed == walkingSpeed)
-                _walking = true;
-            if (speed == runningSpeed)
-                _running = true;
-            _idle = false;
         } 
         else
         {
             _playerVel = Vector3.zero;
-            _walking = _running = false;
-            _idle = true;
             animator.SetFloat("Speed", 0);
         }
     }
@@ -191,13 +185,11 @@ public class ThirdPersonController : PortalTraveller
         if (_inputY > 0 && IsGrounded())
         {
             _playerVel.y = _verticalVel = jumpingSpeed;
-            _jumping = true;
         }
         // player is grounded and jump button not pressed -> don't jump
         else if (_inputY == 0 && IsGrounded())
         {
             _playerVel.y = _verticalVel = 0.0f;
-            _jumping = false;
         }
         // player is in the air -> decrease vertical velocity
         else
@@ -214,6 +206,8 @@ public class ThirdPersonController : PortalTraveller
         _inputX = Input.GetAxis("Horizontal"); // left and right arrow keys or A/D
         _inputY = Input.GetAxisRaw("Jump"); // no need for interpolation, either -1, 0 or 1
         _inputZ = Input.GetAxis("Vertical"); // up and down arrow keys or W/S
+
+        _insideTower = IsInsideTower();
     }
 
     void FixedUpdate()
@@ -222,6 +216,14 @@ public class ThirdPersonController : PortalTraveller
         Jump();
 
         _rb.velocity = transform.TransformDirection(_playerVel);
+
+        if (_playerVel != Vector3.zero && _verticalVel == 0.0f)
+        {
+            Debug.DrawRay(transform.position, _playerVel, Color.red, 2.0f);
+            Quaternion targetRot = Quaternion.LookRotation(_playerVel, Vector3.up);
+            targetRot = Quaternion.Euler(0.0f, 90.0f, 0.0f) * targetRot;
+            _modelTransform.rotation = Quaternion.Lerp(_modelTransform.rotation, targetRot, rotationSpeed * Time.deltaTime);
+        }
     }
 
 
@@ -248,46 +250,5 @@ public class ThirdPersonController : PortalTraveller
         {
             _insidePortal = true;
         }
-    }
-
-    void InterruptRigidbody()
-    {
-        rbProperties.angularDrag = _rb.angularDrag;
-        rbProperties.angularVelocity = _rb.angularVelocity;
-        rbProperties.drag = _rb.drag;
-        rbProperties.inertiaTensor = _rb.inertiaTensor;
-        rbProperties.inertiaTensorRotation = _rb.inertiaTensorRotation;
-        //rbProperties.velocity = _rb.velocity;
-
-        _rb.angularDrag = _rb.drag = 0.0f;
-        _rb.angularVelocity = _rb.inertiaTensor = Vector3.zero;
-        _rb.inertiaTensorRotation = Quaternion.identity;
-        // _rb.velocity;
-    }
-
-    void ReturnRigidbodyProperties()
-    {
-        _rb.angularDrag = rbProperties.angularDrag;
-        _rb.angularVelocity = rbProperties.angularVelocity;
-        _rb.drag = rbProperties.drag;
-        _rb.inertiaTensor = rbProperties.inertiaTensor;
-        _rb.inertiaTensorRotation = rbProperties.inertiaTensorRotation;
-        //_rb.velocity = rbProperties.velocity;
-    }
-
-    public override void Teleport(Transform fromPortal, Transform toPortal, Vector3 pos, Quaternion rot)
-    {
-        // first store values of rigid body then set them to zero 
-        InterruptRigidbody();
-
-        // perform teleportation
-        _rb.position = pos;
-        _rb.rotation = rot;
-        _rb.velocity = toPortal.TransformVector(fromPortal.InverseTransformVector(_rb.velocity));
-        _verticalVel = _rb.velocity.y;
-        Physics.SyncTransforms();
-
-        // return rigid body properties 
-        ReturnRigidbodyProperties();
     }
 }
