@@ -11,12 +11,16 @@ public class TickAI : MonoBehaviour
 
     //float distanceToGoal;
 
-    int updatePath;
+    float updatePath;
 
     //int updateTime = 5;
-    float movementSpeed = 1;
+    float movementSpeed = 2;
+
+    float attackDistance = 10.0f;
 
     bool running = false;
+    bool attacking = false;
+    bool attached = false;
     //bool turn = false;
 
     NavMeshAgent agent;
@@ -37,13 +41,15 @@ public class TickAI : MonoBehaviour
     private void Update()
     {
         // Only update the path planning of the penguin every couple of frames to slow down the penguins movement
-        if (updatePath <= 0)
+        if (updatePath <= 0 && !agent.isStopped)
         {
+            gameObject.GetComponentInParent<Rigidbody>().isKinematic = false;
             // For when the penguin is fleeing from the player snowball instead of normal path planning
             if (running)
             {
                 //anim.Play("run");
-                agent.speed = movementSpeed * 2f;
+             
+                agent.speed = movementSpeed;
                 agent.destination = PlayerLocation;
             }
             else
@@ -63,6 +69,36 @@ public class TickAI : MonoBehaviour
             updatePath = updatePath - 1;
         }
         animator.SetFloat("Speed", agent.speed);
+        animator.SetBool("Attacking", attacking);
+        animator.SetBool("Attached", attached);
+    }
+
+    private void OnCollisionEnter(Collision other)
+    {
+        //Check if its the player
+        if (other.gameObject.layer == 8)
+        {
+            attached = true;
+            running = false;
+            attacking = false;
+            gameObject.transform.parent.parent = other.gameObject.transform;
+            agent.speed = 0;
+            agent.isStopped = true;
+            agent.enabled = false;
+            gameObject.GetComponentInParent<Rigidbody>().isKinematic = true;
+            gameObject.GetComponent<Collider>().enabled = false;
+        }
+    }
+
+    private void OnCollisionExit(Collision other)
+    {
+        //Check if its the player
+        if (other.gameObject.layer == 8)
+        {
+            //attached = false;
+            //agent.enabled = true;
+            //gameObject.GetComponentInParent<Rigidbody>().isKinematic = true;
+        }
     }
 
     private void OnTriggerStay(Collider other)
@@ -72,8 +108,33 @@ public class TickAI : MonoBehaviour
         {
             if (updatePath <= 0)
             {
-                running = true;
-                PlayerLocation = other.gameObject.transform.position;
+                if (!attached)
+                {
+                    agent.isStopped = false;
+                    running = true;
+                    PlayerLocation = other.gameObject.transform.position;
+
+                    if (Mathf.Abs((PlayerLocation.x + PlayerLocation.z) - (transform.position.x + transform.position.z)) <= attackDistance)
+                    {
+                        if (!attacking)
+                        {
+                            attacking = true;
+                            agent.speed = 0;
+                            updatePath = 0.15f;
+                        }
+                        else
+                        {
+                            agent.speed = movementSpeed * 7;
+                            updatePath = 4f;
+                            gameObject.GetComponentInParent<Rigidbody>().isKinematic = true;
+                        }
+                    }
+                    else
+                    {
+                        attacking = false;
+
+                    }
+                }
             }
         }
     }
