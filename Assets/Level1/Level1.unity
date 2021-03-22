@@ -229,20 +229,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ca002da428252441b92f28d83c8a65f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Shape:
-    id: 0
-  m_Size: {x: 6.703924, y: 0.96777725, z: 7.4271545}
-  m_Rotation: {x: 0, y: 0, z: 0, w: 1}
-  m_PivotLocation: 1
-  m_PivotPosition: {x: 0, y: 0, z: 0}
-  m_UnmodifiedMeshVersion: 5275
-  m_ShapeBox:
-    m_Center: {x: 3.351963, y: 0.48388672, z: 3.7135773}
-    m_Extent: {x: 3.351962, y: 0.48388863, z: 3.7135773}
-  references:
-    version: 1
-    00000000:
-      type: {class: Cube, ns: UnityEngine.ProBuilder.Shapes, asm: Unity.ProBuilder}
 --- !u!114 &2132403
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -455,7 +441,6 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 326213464}
-  m_VersionIndex: 5284
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -568,20 +553,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ca002da428252441b92f28d83c8a65f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Shape:
-    id: 0
-  m_Size: {x: 6.703924, y: 0.96777725, z: 7.4271545}
-  m_Rotation: {x: 0, y: 0, z: 0, w: 1}
-  m_PivotLocation: 1
-  m_PivotPosition: {x: 0, y: 0, z: 0}
-  m_UnmodifiedMeshVersion: 5275
-  m_ShapeBox:
-    m_Center: {x: 3.351963, y: 0.48388672, z: 3.7135773}
-    m_Extent: {x: 3.351962, y: 0.48388863, z: 3.7135773}
-  references:
-    version: 1
-    00000000:
-      type: {class: Cube, ns: UnityEngine.ProBuilder.Shapes, asm: Unity.ProBuilder}
 --- !u!114 &72563960
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -794,7 +765,6 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 754793809}
-  m_VersionIndex: 5281
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -1396,20 +1366,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ca002da428252441b92f28d83c8a65f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Shape:
-    id: 0
-  m_Size: {x: 6.703924, y: 0.96777725, z: 7.4271545}
-  m_Rotation: {x: 0, y: 0, z: 0, w: 1}
-  m_PivotLocation: 1
-  m_PivotPosition: {x: 0, y: 0, z: 0}
-  m_UnmodifiedMeshVersion: 5275
-  m_ShapeBox:
-    m_Center: {x: 3.351963, y: 0.48388672, z: 3.7135773}
-    m_Extent: {x: 3.351962, y: 0.48388863, z: 3.7135773}
-  references:
-    version: 1
-    00000000:
-      type: {class: Cube, ns: UnityEngine.ProBuilder.Shapes, asm: Unity.ProBuilder}
 --- !u!114 &199119417
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1622,7 +1578,6 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 716562470}
-  m_VersionIndex: 5287
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -1735,20 +1690,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ca002da428252441b92f28d83c8a65f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Shape:
-    id: 0
-  m_Size: {x: 6.703924, y: 0.96777725, z: 7.4271545}
-  m_Rotation: {x: 0, y: 0, z: 0, w: 1}
-  m_PivotLocation: 1
-  m_PivotPosition: {x: 0, y: 0, z: 0}
-  m_UnmodifiedMeshVersion: 5275
-  m_ShapeBox:
-    m_Center: {x: 3.351963, y: 0.48388672, z: 3.7135773}
-    m_Extent: {x: 3.351962, y: 0.48388863, z: 3.7135773}
-  references:
-    version: 1
-    00000000:
-      type: {class: Cube, ns: UnityEngine.ProBuilder.Shapes, asm: Unity.ProBuilder}
 --- !u!114 &201286487
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1961,7 +1902,6 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 86278527}
-  m_VersionIndex: 5284
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -2095,7 +2035,6 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 747294710}
-  m_VersionIndex: 0
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -2222,20 +2161,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ca002da428252441b92f28d83c8a65f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Shape:
-    id: 0
-  m_Size: {x: 6.703924, y: 0.96777725, z: 7.4271545}
-  m_Rotation: {x: 0, y: 0, z: 0, w: 1}
-  m_PivotLocation: 1
-  m_PivotPosition: {x: 0, y: 0, z: 0}
-  m_UnmodifiedMeshVersion: 5275
-  m_ShapeBox:
-    m_Center: {x: 3.351963, y: 0.48388672, z: 3.7135773}
-    m_Extent: {x: 3.351962, y: 0.48388863, z: 3.7135773}
-  references:
-    version: 1
-    00000000:
-      type: {class: Cube, ns: UnityEngine.ProBuilder.Shapes, asm: Unity.ProBuilder}
 --- !u!114 &231857741
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2448,7 +2373,6 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 242880438}
-  m_VersionIndex: 5284
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -2887,20 +2811,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ca002da428252441b92f28d83c8a65f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Shape:
-    id: 0
-  m_Size: {x: 6.703924, y: 0.96777725, z: 7.4271545}
-  m_Rotation: {x: 0, y: 0, z: 0, w: 1}
-  m_PivotLocation: 1
-  m_PivotPosition: {x: 0, y: 0, z: 0}
-  m_UnmodifiedMeshVersion: 5275
-  m_ShapeBox:
-    m_Center: {x: 3.351963, y: 0.48388672, z: 3.7135773}
-    m_Extent: {x: 3.351962, y: 0.48388863, z: 3.7135773}
-  references:
-    version: 1
-    00000000:
-      type: {class: Cube, ns: UnityEngine.ProBuilder.Shapes, asm: Unity.ProBuilder}
 --- !u!114 &417556032
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3113,7 +3023,6 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 1187648479}
-  m_VersionIndex: 5284
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -3124,7 +3033,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-105640
+  m_Name: pb_Mesh18618
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -3287,7 +3196,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-76782
+  m_Name: pb_Mesh18740
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -3459,7 +3368,7 @@ GameObject:
   - component: {fileID: 512399513}
   - component: {fileID: 512399512}
   m_Layer: 0
-  m_Name: Pipe (1)
+  m_Name: Tower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3538,25 +3447,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ca002da428252441b92f28d83c8a65f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Shape:
-    id: 0
-  m_Size: {x: -90.74274, y: 139.34111, z: 84.33535}
-  m_Rotation: {x: 0, y: 0, z: 0, w: 1}
-  m_PivotLocation: 1
-  m_PivotPosition: {x: 0, y: 0, z: 0}
-  m_UnmodifiedMeshVersion: 2009
-  m_ShapeBox:
-    m_Center: {x: -45.37137, y: 69.670555, z: 42.167675}
-    m_Extent: {x: -45.37137, y: 69.670555, z: 42.167675}
-  references:
-    version: 1
-    00000000:
-      type: {class: Pipe, ns: UnityEngine.ProBuilder.Shapes, asm: Unity.ProBuilder}
-      data:
-        m_Thickness: 1
-        m_NumberOfSides: 20
-        m_HeightCuts: 0
-        m_Smooth: 1
 --- !u!114 &512399516
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8207,7 +8097,6 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 463574739}
-  m_VersionIndex: 6875
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -8226,80 +8115,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &560670303
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 2734262893573108429, guid: 5a9c0ba3b0a1785439a98b9087f73d18,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2734262893573108429, guid: 5a9c0ba3b0a1785439a98b9087f73d18,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 7.44
-      objectReference: {fileID: 0}
-    - target: {fileID: 2734262893573108429, guid: 5a9c0ba3b0a1785439a98b9087f73d18,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 41.61
-      objectReference: {fileID: 0}
-    - target: {fileID: 2734262893573108429, guid: 5a9c0ba3b0a1785439a98b9087f73d18,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 17.833
-      objectReference: {fileID: 0}
-    - target: {fileID: 2734262893573108429, guid: 5a9c0ba3b0a1785439a98b9087f73d18,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.9601428
-      objectReference: {fileID: 0}
-    - target: {fileID: 2734262893573108429, guid: 5a9c0ba3b0a1785439a98b9087f73d18,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2734262893573108429, guid: 5a9c0ba3b0a1785439a98b9087f73d18,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0.27950993
-      objectReference: {fileID: 0}
-    - target: {fileID: 2734262893573108429, guid: 5a9c0ba3b0a1785439a98b9087f73d18,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2734262893573108429, guid: 5a9c0ba3b0a1785439a98b9087f73d18,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2734262893573108429, guid: 5a9c0ba3b0a1785439a98b9087f73d18,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 32.462
-      objectReference: {fileID: 0}
-    - target: {fileID: 2734262893573108429, guid: 5a9c0ba3b0a1785439a98b9087f73d18,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2734262893573108431, guid: 5a9c0ba3b0a1785439a98b9087f73d18,
-        type: 3}
-      propertyPath: m_Name
-      value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 3511903336884288891, guid: 5a9c0ba3b0a1785439a98b9087f73d18,
-        type: 3}
-      propertyPath: tower
-      value: 
-      objectReference: {fileID: 921143663}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 5a9c0ba3b0a1785439a98b9087f73d18, type: 3}
 --- !u!1 &620905150
 GameObject:
   m_ObjectHideFlags: 0
@@ -8435,7 +8250,6 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 1388849453}
-  m_VersionIndex: 0
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -8711,20 +8525,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ca002da428252441b92f28d83c8a65f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Shape:
-    id: 0
-  m_Size: {x: 6.703924, y: 0.96777725, z: 7.4271545}
-  m_Rotation: {x: 0, y: 0, z: 0, w: 1}
-  m_PivotLocation: 1
-  m_PivotPosition: {x: 0, y: 0, z: 0}
-  m_UnmodifiedMeshVersion: 5275
-  m_ShapeBox:
-    m_Center: {x: 3.351963, y: 0.48388672, z: 3.7135773}
-    m_Extent: {x: 3.351962, y: 0.48388863, z: 3.7135773}
-  references:
-    version: 1
-    00000000:
-      type: {class: Cube, ns: UnityEngine.ProBuilder.Shapes, asm: Unity.ProBuilder}
 --- !u!114 &719457218
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8937,7 +8737,6 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 1331116396}
-  m_VersionIndex: 5278
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -9468,24 +9267,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ca002da428252441b92f28d83c8a65f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Shape:
-    id: 0
-  m_Size: {x: 20, y: 1, z: 20}
-  m_Rotation: {x: 0, y: 0, z: 0, w: 1}
-  m_PivotLocation: 1
-  m_PivotPosition: {x: 0, y: 0, z: 0}
-  m_UnmodifiedMeshVersion: 2113
-  m_ShapeBox:
-    m_Center: {x: 5.725292, y: 0.00065648556, z: 6.3464584}
-    m_Extent: {x: 10, y: 0.5, z: 10}
-  references:
-    version: 1
-    00000000:
-      type: {class: Cylinder, ns: UnityEngine.ProBuilder.Shapes, asm: Unity.ProBuilder}
-      data:
-        m_AxisDivisions: 8
-        m_HeightCuts: 0
-        m_Smooth: 1
 --- !u!114 &921143668
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10182,7 +9963,6 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 108020040}
-  m_VersionIndex: 2116
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -10837,20 +10617,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ca002da428252441b92f28d83c8a65f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Shape:
-    id: 0
-  m_Size: {x: 6.703924, y: 0.96777725, z: 7.4271545}
-  m_Rotation: {x: 0, y: 0, z: 0, w: 1}
-  m_PivotLocation: 1
-  m_PivotPosition: {x: 0, y: 0, z: 0}
-  m_UnmodifiedMeshVersion: 5275
-  m_ShapeBox:
-    m_Center: {x: 3.351963, y: 0.48388672, z: 3.7135773}
-    m_Extent: {x: 3.351962, y: 0.48388863, z: 3.7135773}
-  references:
-    version: 1
-    00000000:
-      type: {class: Cube, ns: UnityEngine.ProBuilder.Shapes, asm: Unity.ProBuilder}
 --- !u!114 &1446971599
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11063,7 +10829,6 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 92084993}
-  m_VersionIndex: 5284
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -11340,6 +11105,155 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uvAnimationRate: {x: 0.02, y: 0}
   textureName: _MainTex
+--- !u!1001 &1650561902
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 133738613122764433, guid: 222d655a872a98e449c8eeda759468d0,
+        type: 3}
+      propertyPath: tower
+      value: 
+      objectReference: {fileID: 512399511}
+    - target: {fileID: 133738613122764433, guid: 222d655a872a98e449c8eeda759468d0,
+        type: 3}
+      propertyPath: offSet.x
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 133738613122764433, guid: 222d655a872a98e449c8eeda759468d0,
+        type: 3}
+      propertyPath: offSet.y
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 133738613122764433, guid: 222d655a872a98e449c8eeda759468d0,
+        type: 3}
+      propertyPath: offSet.z
+      value: -7
+      objectReference: {fileID: 0}
+    - target: {fileID: 133738613122764434, guid: 222d655a872a98e449c8eeda759468d0,
+        type: 3}
+      propertyPath: tower
+      value: 
+      objectReference: {fileID: 512399511}
+    - target: {fileID: 133738613122764434, guid: 222d655a872a98e449c8eeda759468d0,
+        type: 3}
+      propertyPath: jumpingSpeed
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 133738613122764434, guid: 222d655a872a98e449c8eeda759468d0,
+        type: 3}
+      propertyPath: runningSpeed
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 133738613122764434, guid: 222d655a872a98e449c8eeda759468d0,
+        type: 3}
+      propertyPath: walkingSpeed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 896126930931109229, guid: 222d655a872a98e449c8eeda759468d0,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+    - target: {fileID: 1483344988021735716, guid: 222d655a872a98e449c8eeda759468d0,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1483344988021735716, guid: 222d655a872a98e449c8eeda759468d0,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 24.68
+      objectReference: {fileID: 0}
+    - target: {fileID: 1483344988021735716, guid: 222d655a872a98e449c8eeda759468d0,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 42.26
+      objectReference: {fileID: 0}
+    - target: {fileID: 1483344988021735716, guid: 222d655a872a98e449c8eeda759468d0,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 41.82
+      objectReference: {fileID: 0}
+    - target: {fileID: 1483344988021735716, guid: 222d655a872a98e449c8eeda759468d0,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1483344988021735716, guid: 222d655a872a98e449c8eeda759468d0,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1483344988021735716, guid: 222d655a872a98e449c8eeda759468d0,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1483344988021735716, guid: 222d655a872a98e449c8eeda759468d0,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1483344988021735716, guid: 222d655a872a98e449c8eeda759468d0,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1483344988021735716, guid: 222d655a872a98e449c8eeda759468d0,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1483344988021735716, guid: 222d655a872a98e449c8eeda759468d0,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1483344988021735718, guid: 222d655a872a98e449c8eeda759468d0,
+        type: 3}
+      propertyPath: m_Name
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 1483344988530174607, guid: 222d655a872a98e449c8eeda759468d0,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 11.12
+      objectReference: {fileID: 0}
+    - target: {fileID: 1483344988530174607, guid: 222d655a872a98e449c8eeda759468d0,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 17.69
+      objectReference: {fileID: 0}
+    - target: {fileID: 3670534049775294015, guid: 222d655a872a98e449c8eeda759468d0,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+    - target: {fileID: 3737593809116471382, guid: 222d655a872a98e449c8eeda759468d0,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+    - target: {fileID: 4400219372149546951, guid: 222d655a872a98e449c8eeda759468d0,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+    - target: {fileID: 7721959976921464061, guid: 222d655a872a98e449c8eeda759468d0,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+    - target: {fileID: 8047836833581770925, guid: 222d655a872a98e449c8eeda759468d0,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 222d655a872a98e449c8eeda759468d0, type: 3}
 --- !u!1 &1690237155
 GameObject:
   m_ObjectHideFlags: 0
@@ -11448,20 +11362,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ca002da428252441b92f28d83c8a65f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Shape:
-    id: 0
-  m_Size: {x: 6.703924, y: 0.96777725, z: 7.4271545}
-  m_Rotation: {x: 0, y: 0, z: 0, w: 1}
-  m_PivotLocation: 1
-  m_PivotPosition: {x: 0, y: 0, z: 0}
-  m_UnmodifiedMeshVersion: 5275
-  m_ShapeBox:
-    m_Center: {x: 3.351963, y: 0.48388672, z: 3.7135773}
-    m_Extent: {x: 3.351962, y: 0.48388863, z: 3.7135773}
-  references:
-    version: 1
-    00000000:
-      type: {class: Cube, ns: UnityEngine.ProBuilder.Shapes, asm: Unity.ProBuilder}
 --- !u!114 &1690237161
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11674,7 +11574,6 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 1568731798}
-  m_VersionIndex: 5281
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -11689,12 +11588,11 @@ GameObject:
   m_Component:
   - component: {fileID: 1770309927}
   - component: {fileID: 1770309926}
-  - component: {fileID: 1770309925}
   - component: {fileID: 1770309924}
   - component: {fileID: 1770309923}
   - component: {fileID: 1770309922}
   m_Layer: 0
-  m_Name: Pipe
+  m_Name: Not tower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11761,37 +11659,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &1770309925
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1770309921}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ca002da428252441b92f28d83c8a65f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Shape:
-    id: 0
-  m_Size: {x: 20, y: 20, z: 20}
-  m_Rotation: {x: 0, y: 0, z: 0, w: 1}
-  m_PivotLocation: 1
-  m_PivotPosition: {x: 0, y: 0, z: 0}
-  m_UnmodifiedMeshVersion: 2653
-  m_ShapeBox:
-    m_Center: {x: 0.46384358, y: -0.99661255, z: 0.45290542}
-    m_Extent: {x: 10, y: 10, z: 10}
-  references:
-    version: 1
-    00000000:
-      type: {class: Pipe, ns: UnityEngine.ProBuilder.Shapes, asm: Unity.ProBuilder}
-      data:
-        m_Thickness: 1
-        m_NumberOfSides: 8
-        m_HeightCuts: 0
-        m_Smooth: 1
 --- !u!114 &1770309926
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13903,7 +13770,6 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 487842999}
-  m_VersionIndex: 4886
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
