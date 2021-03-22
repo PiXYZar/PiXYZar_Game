@@ -100,8 +100,15 @@ public class ThirdPersonController : PortalTraveller
         // capsule collider excluding its own collider and with smaller radius to avoid hitting walls 
         RaycastHit[] hits = Physics.CapsuleCastAll(centre1, centre2, _collider.radius * 0.95f, Vector3.down, 0.85f, _layerMask);
 
+        bool jumpableObjects = false;
+        foreach(RaycastHit hit in hits)
+        {
+            if (hit.collider.isTrigger == false)
+                jumpableObjects = true;
+        }
+
         // if there is a hit, it is grounded 
-        if (hits.Length > 0)
+        if (hits.Length > 0 && jumpableObjects)
         {
             return true;
         }
