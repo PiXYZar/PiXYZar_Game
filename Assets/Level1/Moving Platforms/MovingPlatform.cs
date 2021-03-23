@@ -42,11 +42,6 @@ public class MovingPlatform : MonoBehaviour
             transform.position += amountp;
             transform.rotation = displacer;
             
-            if (isInContactWithPlayer)
-            {
-                //controller.Move(amount);
-                //Will instead child the player to itself
-            }
             lastDisplacep = displacep;
             lastDisplacer = displacer;
             if (phase >= 1 || phase <= 0)
@@ -54,12 +49,5 @@ public class MovingPlatform : MonoBehaviour
                 phaseDir *= -1;
             }
         }
-        
-        isInContactWithPlayer = false;
-    }
-
-    public void playerHit()
-    {
-        isInContactWithPlayer = true;
     }
 }
