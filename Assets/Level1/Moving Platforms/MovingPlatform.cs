@@ -19,10 +19,8 @@ public class MovingPlatform : MonoBehaviour
     Vector3 displacep;
     Quaternion displacer;
     Vector3 lastDisplacep = new Vector3(0, 0, 0);
-    Quaternion lastDisplacer = Quaternion.Euler(0, 0, 0);
     
     public bool isActive = false;
-    public bool isInContactWithPlayer = false;
 
     void Start() {
         origR = transform.rotation;
@@ -37,13 +35,15 @@ public class MovingPlatform : MonoBehaviour
         {
             displacep = Vector3.Lerp(zeros, endp, phase);
             displacer = Quaternion.Lerp(origR, endr, phase);
+
             phase += speed * phaseDir * Time.deltaTime;
+
             amountp = displacep - lastDisplacep;
             transform.position += amountp;
             transform.rotation = displacer;
             
             lastDisplacep = displacep;
-            lastDisplacer = displacer;
+            
             if (phase >= 1 || phase <= 0)
             {
                 phaseDir *= -1;
