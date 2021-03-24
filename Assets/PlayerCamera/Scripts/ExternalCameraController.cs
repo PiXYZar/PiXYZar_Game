@@ -11,6 +11,7 @@ public class ExternalCameraController : MonoBehaviour
     public float smooth = 0.05f;
     public float changeOfViewSmooth = 0.5f;
     public Vector3 offSet;
+    public Transform firstPersonView;
 
     private Vector3 _camVel;
     private Vector3 _camRotVel;
@@ -20,12 +21,16 @@ public class ExternalCameraController : MonoBehaviour
     private float _initAngle;
     private float _currAngle;
 
+    private MeshRenderer _headRenderer;
+
     void Start()
     {
         _playerScript = player.GetComponent<ThirdPersonController>();
         _insideTower = _playerScript.InsideTower;
 
         _initAngle = _currAngle = GetAngle();
+
+        _headRenderer = firstPersonView.GetComponent<MeshRenderer>();
     }
 
     float GetAngle()
@@ -39,28 +44,95 @@ public class ExternalCameraController : MonoBehaviour
     {
         // if changing view, transition time increases 
         float smoothTime = smooth;
-        bool inside = true;
-
-        if (!_playerScript.InsideTower)
+        bool inside = false;        
+                
+        if (_playerScript.FacingPortal)
         {
-            if (_insideTower)
+            //Debug.Log(_playerScript.EnteredPortal);
+            //Debug.Log(_playerScript.ExitedPortal);
+
+            if (_playerScript.EnteredPortal && _playerScript.ExitedPortal)
             {
-                smoothTime = changeOfViewSmooth;
-                inside = false;
-                _insideTower = false;
+                _playerScript.EnteredPortal = false;
+                _playerScript.InsidePortal = false;
+                _playerScript.ExitedPortal = false;
+                _insideTower = _playerScript.InsideTower;
+
+                _headRenderer.enabled = true;
+            }
+            else
+            {
+                //Debug.Log("check3");
+                FirstPersonCamera();
             }
         }
         else
         {
-            if (!_insideTower)
+            _headRenderer.enabled = true;
+            if (!_playerScript.InsideTower)
             {
-                smoothTime = changeOfViewSmooth;
-                inside = true;
-                _insideTower = true;
+                //if (_insideTower)
+                //{
+                    smoothTime = changeOfViewSmooth;
+                    inside = false;
+                    _insideTower = false;
+                //}
             }
+            else
+            {
+                //if (!_insideTower)
+                //{
+                    smoothTime = changeOfViewSmooth;
+                    inside = true;
+                    _insideTower = true;
+                //}
+            }
+
+            MoveCamera(inside, smoothTime);
         }
 
-        MoveCamera(false, smoothTime);
+       /*
+       if (_playerScript.FacingPortal)
+       {
+           if (_playerScript.EnteredPortal && _playerScript.ExitedPortal)
+           {
+               _playerScript.EnteredPortal = false;
+               _playerScript.InsidePortal = false;
+               _playerScript.ExitedPortal = false;
+           }
+           else
+           {
+               //FirstPersonCamera();
+           }
+       }
+       else
+       {
+           Renderer rend = player.GetComponentInChildren<MeshRenderer>();
+           rend.enabled = true;
+           MoveCamera(smooth);
+           /*
+           if (!_playerScript.InsideTower)
+           {
+               if (_insideTower)
+               {
+                   smoothTime = changeOfViewSmooth;
+                   inside = false;
+                   _insideTower = false;
+               }
+           }
+           else
+           {
+               if (!_insideTower)
+               {
+                   smoothTime = changeOfViewSmooth;
+                   inside = true;
+                   _insideTower = true;
+               }
+           }
+
+           MoveCamera(false, smoothTime);
+       }*/
+
     }
 
     void MoveCamera(bool inside, float smoothTime)
@@ -71,7 +143,19 @@ public class ExternalCameraController : MonoBehaviour
         _currAngle = GetAngle();
         float angle = _initAngle - _currAngle;
         Quaternion rotateOffset = Quaternion.Euler(0.0f, angle, 0.0f);
-        Vector3 _targetPosition = _target.position + rotateOffset * offSet;
+
+        Vector3 _targetPosition = Vector3.zero;
+
+        if (inside)
+        {
+            //Debug.Log("check10");
+            _targetPosition = tower.GetComponentInChildren<Collider>().bounds.center;
+            _targetPosition.y = player.transform.position.y + offSet.y;
+        }
+        else
+            _targetPosition = _target.position + rotateOffset * offSet;
+
+        //Debug.Log(inside);
 
         // move camera
         transform.position = Vector3.SmoothDamp(transform.position, _targetPosition, ref _camVel, 0.05f);
@@ -79,5 +163,30 @@ public class ExternalCameraController : MonoBehaviour
         // move camera to look at player
         Quaternion targetRotation = Quaternion.LookRotation(_target.position - transform.position);
         transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, 100 * Time.deltaTime);
+    }
+
+    void FirstPersonCamera()
+    {
+        // move camera 
+        transform.position = Vector3.SmoothDamp(transform.position, firstPersonView.position, ref _camVel, changeOfViewSmooth);
+
+        // rotate player 
+        Vector3 target = _playerScript.PlayerVelocity;
+        target.y = transform.position.y;
+
+        Quaternion targetRotation = Quaternion.LookRotation(-firstPersonView.right);
+        transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, 100 * Time.deltaTime);
+
+        // make player invisible if distance to player too low 
+        float dist = (firstPersonView.position - transform.position).sqrMagnitude;
+
+        if (dist < 0.5)
+        {
+            _headRenderer.enabled = false;
+        }
+        else
+        {
+            _headRenderer.enabled = true;
+        }
     }
 }

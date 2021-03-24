@@ -16,6 +16,8 @@ public class ThirdPersonController : PortalTraveller
     public float gravity = 0.75f;
     public float jumpingSpeed = 50f;
 
+    public float portalRadiusCheck = 3.0f;
+
     public bool lockCursor = false;
 
     private Vector3 _towerCentre;
@@ -28,7 +30,10 @@ public class ThirdPersonController : PortalTraveller
     private Vector3 _playerVel;
     private float _verticalVel;
 
+    public Vector3 PlayerVelocity { get { return _playerVel; } }
+
     private int _layerMask;
+    private int _portalLayerMask;
 
     private bool _insideTower;
     public bool InsideTower { get { return _insideTower; } }
@@ -44,6 +49,17 @@ public class ThirdPersonController : PortalTraveller
     public bool InsidePortal { get { return _insidePortal; } set { _insidePortal = value; } }
     
     private Transform _modelTransform;
+
+    private bool _facingPortal;
+    public bool FacingPortal { get { return _facingPortal; } }
+
+    private Camera _portalCamera;
+    private Camera _mainCamera;
+
+    private float _radius;
+    private GameObject _triggerField;
+    private Vector3 _center;
+
 
     void Awake()
     {
@@ -79,13 +95,50 @@ public class ThirdPersonController : PortalTraveller
 
         // ignore player, detect anything else 
         _layerMask = ~(1 << LayerMask.NameToLayer("Player"));
+        _portalLayerMask = 1 << LayerMask.NameToLayer("Portal");
 
         _towerCentre = tower.GetComponent<Renderer>().bounds.center;
 
-        _insideTower = IsInsideTower();
+        _insideTower = false;
 
         _modelTransform = gameObject.transform.GetChild(0);
 
+        _facingPortal = false;
+
+        _mainCamera = transform.Find("Main Camera").GetComponent<Camera>();
+
+        _triggerField = tower.transform.Find("Trigger Field").gameObject;
+        Vector3 scale = _triggerField.transform.parent.localScale;
+        scale.y = 0.0f;
+        _radius = scale.magnitude;
+        _center = _triggerField.GetComponent<CapsuleCollider>().center;
+    }
+
+    bool IsFacingPortal()
+    {
+        //Debug.Log(InsidePortal);
+        //Debug.Log(EnteredPortal);
+        if (!InsidePortal && !EnteredPortal)
+        {
+            Collider[] colliders = Physics.OverlapSphere(transform.position, portalRadiusCheck, _portalLayerMask);
+
+            foreach (Collider collider in colliders)
+            {
+                // if the angle between the current agent and the detected agent is above a threshold, add it 
+                Vector3 distance = collider.transform.position - transform.position;
+                distance.y = 0.0f;
+                //Debug.Log(collider.name);
+                //Debug.DrawRay(transform.position, _playerVel.normalized, Color.red, 2.0f);
+                //Debug.DrawRay(transform.position, distance.normalized, Color.blue, 2.0f);
+                //Debug.Log("dot product : " + Vector3.Dot(distance, _playerVel));
+                if (Vector3.Dot(distance, transform.forward) > Mathf.Cos(90.0f * Mathf.PI / 180.0f))
+                    return true;
+            }
+            //Debug.DrawRay(transform.position, transform.forward, Color.green, 5.0f);
+            //if (Physics.Raycast(transform.position, transform.forward, portalRadiusCheck, _portalLayerMask))
+            //    return true;
+        }
+        return false;
     }
 
     bool IsGrounded()
@@ -123,9 +176,20 @@ public class ThirdPersonController : PortalTraveller
         // local position of player wrt tower centre 
         Vector3 playerLocal = tower.transform.InverseTransformPoint(transform.position);
 
+        Vector3 difference = tower.GetComponent<Renderer>().bounds.center-  transform.position;
+        Vector3 extents = tower.GetComponent<Renderer>().bounds.extents;
+
+        Debug.Log("diff: " + difference);
+        Debug.Log("extents: " + extents);
+
+        //Debug.Log("local x=> " + (tower.GetComponent<Renderer>().bounds.center.x - transform.position.x) + 
+        //    ", z=> " + (tower.GetComponent<Renderer>().bounds.center.z - transform.position.z));
+        //Debug.Log("tower extents x=> " + tower.GetComponent<Renderer>().bounds.extents.x + ", z=> " + tower.GetComponent<Renderer>().bounds.extents.z);
         // check if player is inside tower 
-        if (playerLocal.x < tower.GetComponent<MeshFilter>().mesh.bounds.extents.x &&
-            playerLocal.z < tower.GetComponent<MeshFilter>().mesh.bounds.extents.z)
+        //if (playerLocal.x < tower.GetComponent<MeshFilter>().mesh.bounds.extents.x &&
+        //    playerLocal.z < tower.GetComponent<MeshFilter>().mesh.bounds.extents.z)
+        //    return true;
+        if (Mathf.Abs(difference.x) < extents.x && Mathf.Abs(difference.z) < extents.z)
             return true;
 
         return false;
@@ -214,48 +278,89 @@ public class ThirdPersonController : PortalTraveller
         _inputY = Input.GetAxisRaw("Jump"); // no need for interpolation, either -1, 0 or 1
         _inputZ = Input.GetAxis("Vertical"); // up and down arrow keys or W/S
 
-        _insideTower = IsInsideTower();
+        //_insideTower = IsInsideTower();
+        //Debug.Log("inside tower: " + _insideTower);
+        _facingPortal = IsFacingPortal();
+        //Debug.Log("facing portal: " + _facingPortal);
+        //Debug.Log("inside tower: " + _insideTower);
     }
 
     void FixedUpdate()
     {
         Translate();
         Jump();
-
-        _rb.velocity = transform.TransformDirection(_playerVel);
+        
+        _rb.velocity = _playerVel;
 
         if (_playerVel != Vector3.zero && _verticalVel == 0.0f)
         {
-            Debug.DrawRay(transform.position, _playerVel, Color.red, 2.0f);
+            //Debug.DrawRay(transform.position, _playerVel, Color.red, 2.0f);
             Quaternion targetRot = Quaternion.LookRotation(_playerVel, Vector3.up);
             targetRot = Quaternion.Euler(0.0f, 90.0f, 0.0f) * targetRot;
             _modelTransform.rotation = Quaternion.Lerp(_modelTransform.rotation, targetRot, rotationSpeed * Time.deltaTime);
         }
-    }
 
+        if ((transform.position - _triggerField.transform.TransformPoint(_center)).magnitude < _radius)
+            _insideTower = true;
+        Debug.Log(_insideTower);
+    }
 
     void onTriggerEnter(Collider collider)
     {
-        if (collider.tag.Equals("Portal"))
+        Debug.Log("entering");
+        if (collider.gameObject.layer.Equals("Portal"))
         {
             _enteredPortal = true;
+            Debug.Log("check");
+            if (!_insidePortal)
+            {
+                Debug.Log("check4");
+                _portalCamera = collider.transform.Find("Portal Camera").GetComponent<Camera>();
+                Debug.Log(collider.gameObject.name);
+                _mainCamera.enabled = false;
+                _portalCamera.enabled = true;
+                
+            }
+        }
+        else if (collider.gameObject.name.Equals("Trigger Field"))
+        {
+            _insideTower = true;
+        }
+        else
+        {
+            _insideTower = false;
         }
     }
 
     void onTriggerExit(Collider collider)
     {
-        if (collider.tag.Equals("Portal"))
+        Debug.Log("exiting");
+        if (collider.gameObject.layer.Equals("Portal"))
         {
-            _insidePortal = false;
+            Debug.Log("check5");
             _exitedPortal = true;
+            _portalCamera.enabled = false;
+            _mainCamera.enabled = true;
         }
     }
 
     void onTriggerStay(Collider collider)
     {
-        if (collider.tag.Equals("Portal"))
+        Debug.Log("inside");
+        if (collider.gameObject.layer.Equals("Portal"))
         {
             _insidePortal = true;
         }
+    }
+
+    public override void Teleport(Transform fromPortal, Transform toPortal, Vector3 pos, Quaternion rot)
+    {
+        transform.position = pos;
+        Vector3 eulerRot = rot.eulerAngles;
+        float delta = Mathf.DeltaAngle(transform.rotation.y, eulerRot.y);
+        float yaw = transform.rotation.y + delta;
+        transform.eulerAngles = Vector3.up * yaw;
+        _rb.velocity = toPortal.TransformVector(fromPortal.InverseTransformVector(_rb.velocity));
+        Physics.SyncTransforms();
     }
 }
