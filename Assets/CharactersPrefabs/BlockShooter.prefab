@@ -327,6 +327,7 @@ GameObject:
   - component: {fileID: 6894047784830455331}
   - component: {fileID: 6351811131130064608}
   - component: {fileID: 7264199398763221718}
+  - component: {fileID: 2508418748257445815}
   m_Layer: 0
   m_Name: BlockShooter
   m_TagString: Untagged
@@ -384,6 +385,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 0.5370712, z: 3.4674377}
   m_Center: {x: 0, y: 0.23146439, z: -0.19314575}
+--- !u!135 &2508418748257445815
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6117932576093181081}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 36.17
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7264199398358944717
 GameObject:
   m_ObjectHideFlags: 0
@@ -396,7 +410,7 @@ GameObject:
   - component: {fileID: 7264199398358944718}
   - component: {fileID: 7264199398358944719}
   m_Layer: 0
-  m_Name: BlockShooter 1
+  m_Name: BlockShooter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
