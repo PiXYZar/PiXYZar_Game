@@ -1,0 +1,106 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &5661248837497454213
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 8353923036307212552, guid: b03da9634b59c9448b0a52d6df9e53dd,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8353923036307212552, guid: b03da9634b59c9448b0a52d6df9e53dd,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.6780939
+      objectReference: {fileID: 0}
+    - target: {fileID: 8353923036307212552, guid: b03da9634b59c9448b0a52d6df9e53dd,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.589
+      objectReference: {fileID: 0}
+    - target: {fileID: 8353923036307212552, guid: b03da9634b59c9448b0a52d6df9e53dd,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -72.43477
+      objectReference: {fileID: 0}
+    - target: {fileID: 8353923036307212552, guid: b03da9634b59c9448b0a52d6df9e53dd,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 101.11081
+      objectReference: {fileID: 0}
+    - target: {fileID: 8353923036307212552, guid: b03da9634b59c9448b0a52d6df9e53dd,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 96.4583
+      objectReference: {fileID: 0}
+    - target: {fileID: 8353923036307212552, guid: b03da9634b59c9448b0a52d6df9e53dd,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9717437
+      objectReference: {fileID: 0}
+    - target: {fileID: 8353923036307212552, guid: b03da9634b59c9448b0a52d6df9e53dd,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8353923036307212552, guid: b03da9634b59c9448b0a52d6df9e53dd,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.23603855
+      objectReference: {fileID: 0}
+    - target: {fileID: 8353923036307212552, guid: b03da9634b59c9448b0a52d6df9e53dd,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8353923036307212552, guid: b03da9634b59c9448b0a52d6df9e53dd,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8353923036307212552, guid: b03da9634b59c9448b0a52d6df9e53dd,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 27.306002
+      objectReference: {fileID: 0}
+    - target: {fileID: 8353923036307212552, guid: b03da9634b59c9448b0a52d6df9e53dd,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8353923036307212553, guid: b03da9634b59c9448b0a52d6df9e53dd,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8353923036307212553, guid: b03da9634b59c9448b0a52d6df9e53dd,
+        type: 3}
+      propertyPath: m_MeshFormatVersion
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8353923036307212555, guid: b03da9634b59c9448b0a52d6df9e53dd,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: aaa78d60bfc764377915b044be73f1e0, type: 2}
+    - target: {fileID: 8353923036307212660, guid: b03da9634b59c9448b0a52d6df9e53dd,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8353923036307212661, guid: b03da9634b59c9448b0a52d6df9e53dd,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8353923036307212662, guid: b03da9634b59c9448b0a52d6df9e53dd,
+        type: 3}
+      propertyPath: m_Name
+      value: Portal 1 Exit
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b03da9634b59c9448b0a52d6df9e53dd, type: 3}
