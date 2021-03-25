@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5063891909245387438}
   - component: {fileID: 5063891909245387439}
+  - component: {fileID: 2457185470274786733}
   m_Layer: 0
   m_Name: BlockShot
   m_TagString: Untagged
@@ -25,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5063891909245387424}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 90.8, y: 41.4, z: -71.42}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
   m_Children:
   - {fileID: 5063891910077739721}
@@ -48,6 +49,22 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 4
   m_CollisionDetection: 0
+--- !u!114 &2457185470274786733
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5063891909245387424}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 703c41e334eeb3e4a8dd0c56758a350a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  chargeRate: 50
+  maxCharge: 100
+  maxAge: 5
+  ageRate: 1
 --- !u!1 &5063891910077739722
 GameObject:
   m_ObjectHideFlags: 0
