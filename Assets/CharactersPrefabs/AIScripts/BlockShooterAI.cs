@@ -18,6 +18,7 @@ public class BlockShooterAI : MonoBehaviour
 
     //bool running = false;
     bool shooting = false;
+    bool walking = false;
     //bool turn = false;
 
     NavMeshAgent agent;
@@ -58,6 +59,10 @@ public class BlockShooterAI : MonoBehaviour
                 agent.destination = PlayerLocation;
                 
                 updatePath = 4;
+            }
+            else if (walking)
+            {
+
             }
             else
             {
