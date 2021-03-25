@@ -13,7 +13,7 @@ public class TickAI : MonoBehaviour
     //float distanceToGoal;
 
     //This is a counter variable that determines when the tick should update its path planning. 1 = 1 second. 
-    float updatePath;
+    public float updatePath;
 
     float movementSpeed = 2;
 
@@ -22,12 +22,13 @@ public class TickAI : MonoBehaviour
     //Booleans for determining animation and current action
     bool running = false;
     bool attacking = false;
-    bool attached = false;
+    public bool attached = false;
     //bool turn = false;
 
     NavMeshAgent agent;
     Animator animator;
 
+    Transform dad;
 
     void Start()
     {
@@ -102,6 +103,25 @@ public class TickAI : MonoBehaviour
             gameObject.transform.parent.parent = other.gameObject.transform.parent;
             //gameObject.GetComponent<Collider>().enabled = false;
         }
+    }
+
+    public void collidedWithPlayer(Transform other)
+    {
+        dad = other.transform.parent.parent;
+        Debug.Log("attached");
+        attached = true;
+        running = false;
+        attacking = false;
+        agent.speed = 0;
+        agent.isStopped = true;
+        agent.enabled = false;
+        updatePath = 6;
+        other.transform.parent.parent = GameObject.FindWithTag("Player").transform;
+    }
+
+    public void stopCollisionWithPlayer(Transform other)
+    {
+        other.transform.parent.parent = dad;
     }
 
     private void OnTriggerStay(Collider other)
