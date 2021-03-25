@@ -9,14 +9,14 @@ public class PlatformTrigger : MonoBehaviour
     
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("player")) 
+        if (other.gameObject.CompareTag("Player")) 
             thePlayer.transform.parent = thePlatfrom.transform;
         //Debug.Log("Im in");
     }
     
     void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.CompareTag("player")) 
+        if (other.gameObject.CompareTag("Player")) 
             thePlayer.transform.parent = null;
         //Debug.Log("Im out");
     }
