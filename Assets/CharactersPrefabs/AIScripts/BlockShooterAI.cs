@@ -62,7 +62,8 @@ public class BlockShooterAI : MonoBehaviour
             }
             else if (walking)
             {
-
+                agent.speed = 3.5f;
+                
             }
             else
             {
@@ -87,7 +88,7 @@ public class BlockShooterAI : MonoBehaviour
     private void OnTriggerStay(Collider other)
     {
         // Check within trigger radius for the player 
-        if (other.gameObject.layer == 8)
+        if (other.gameObject.tag == "Player")
         {
             PlayerLocation = other.gameObject.transform.position;
             agent.destination = PlayerLocation;

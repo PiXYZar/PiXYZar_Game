@@ -89,7 +89,7 @@ public class TickAI : MonoBehaviour
     private void OnCollisionEnter(Collision other)
     {
         //Check if its the player
-        if (other.gameObject.layer.Equals("Player"))
+        if (other.gameObject.tag == "Player")
         {
             Debug.Log("attached");
             attached = true;
@@ -107,7 +107,7 @@ public class TickAI : MonoBehaviour
     private void OnTriggerStay(Collider other)
     {
         // Check if player within trigger radius
-        if (other.gameObject.layer.Equals("Player"))
+        if (other.gameObject.tag == "Player")
         {
             if (updatePath <= 0)
             {
@@ -148,7 +148,7 @@ public class TickAI : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         // Check if player has left trigger area
-        if (other.gameObject.layer.Equals("Player"))
+        if (other.gameObject.tag == "Player")
         {
             running = false;
             attacking = false;

@@ -75,7 +75,7 @@ public class PusherAI : MonoBehaviour
     private void OnTriggerStay(Collider other)
     {
         // Check within trigger radius for the player 
-        if (other.gameObject.layer.Equals("Player"))
+        if (other.gameObject.tag == "Player")
         {
             if (updatePath <= 0 && charging == false)
             {
