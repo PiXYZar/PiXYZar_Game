@@ -6,6 +6,7 @@ TagManager:
   tags:
   - player
   - Freeze Trap
+  - Bullet
   layers:
   - Default
   - TransparentFX
