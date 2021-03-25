@@ -12,6 +12,7 @@ public class ExternalCameraController : MonoBehaviour
     public float changeOfViewSmooth = 0.5f;
     public Vector3 offSet;
     public Transform firstPersonView;
+    public float insideRadius = 5.0f;
 
     private Vector3 _camVel;
     private Vector3 _camRotVel;
@@ -149,7 +150,15 @@ public class ExternalCameraController : MonoBehaviour
         if (inside)
         {
             //Debug.Log("check10");
-            _targetPosition = tower.GetComponentInChildren<Collider>().bounds.center;
+            Vector3 local = player.transform.position - tower.transform.position;
+            Debug.Log(local);
+            Debug.Log(local.magnitude);
+            Vector3 updated = local.normalized * insideRadius;
+            Debug.Log(updated);
+
+            //_targetPosition = tower.GetComponentInChildren<Collider>().bounds.center;
+            
+            _targetPosition = player.transform.position - updated;
             _targetPosition.y = player.transform.position.y + offSet.y;
         }
         else

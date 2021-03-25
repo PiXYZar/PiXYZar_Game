@@ -5340,7 +5340,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh14162
+  m_Name: pb_Mesh14572
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -5523,6 +5523,11 @@ PrefabInstance:
         type: 3}
       propertyPath: offSet.z
       value: -25
+      objectReference: {fileID: 0}
+    - target: {fileID: 133738613122764433, guid: 222d655a872a98e449c8eeda759468d0,
+        type: 3}
+      propertyPath: insideRadius
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 133738613122764433, guid: 222d655a872a98e449c8eeda759468d0,
         type: 3}
