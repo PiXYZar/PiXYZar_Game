@@ -60,6 +60,9 @@ public class ThirdPersonController : PortalTraveller
     private GameObject _triggerField;
     private Vector3 _center;
 
+    private bool _frozen;
+    private FreezeTrap _freezeTrap;
+
 
     void Awake()
     {
@@ -157,10 +160,10 @@ public class ThirdPersonController : PortalTraveller
         foreach(RaycastHit hit in hits)
         {
 
-            Debug.Log(hit.collider.gameObject.name);
+            //Debug.Log(hit.collider.gameObject.name);
             if (hit.collider.isTrigger == false)
             {
-                Debug.Log("trigger false: " + hit.collider.gameObject.name);
+                //Debug.Log("trigger false: " + hit.collider.gameObject.name);
                 jumpableObjects = true;
             }
         }
@@ -294,15 +297,20 @@ public class ThirdPersonController : PortalTraveller
     {
         Translate();
         Jump();
-        
-        _rb.velocity = _playerVel;
 
-        if (_playerVel != Vector3.zero && _verticalVel == 0.0f)
+        if (_freezeTrap != null && _freezeTrap.IsFrozen == true)
+            _rb.velocity = Vector3.zero;
+        else
         {
-            //Debug.DrawRay(transform.position, _playerVel, Color.red, 2.0f);
-            Quaternion targetRot = Quaternion.LookRotation(_playerVel, Vector3.up);
-            targetRot = Quaternion.Euler(0.0f, 90.0f, 0.0f) * targetRot;
-            _modelTransform.rotation = Quaternion.Lerp(_modelTransform.rotation, targetRot, rotationSpeed * Time.deltaTime);
+            _rb.velocity = _playerVel;
+
+            if (_playerVel != Vector3.zero && _verticalVel == 0.0f)
+            {
+                //Debug.DrawRay(transform.position, _playerVel, Color.red, 2.0f);
+                Quaternion targetRot = Quaternion.LookRotation(_playerVel, Vector3.up);
+                targetRot = Quaternion.Euler(0.0f, 90.0f, 0.0f) * targetRot;
+                _modelTransform.rotation = Quaternion.Lerp(_modelTransform.rotation, targetRot, rotationSpeed * Time.deltaTime);
+            }
         }
 
         if ((transform.position - _triggerField.transform.TransformPoint(_center)).magnitude < _radius)
@@ -315,6 +323,13 @@ public class ThirdPersonController : PortalTraveller
     void OnTriggerEnter(Collider collider)
     {
         Debug.Log("entering " + collider.gameObject.name);
+
+        if (collider.gameObject.tag == "Freeze Trap")
+        {
+            _freezeTrap = (FreezeTrap)collider.gameObject.GetComponent<FreezeTrap>();
+            _freezeTrap.IsFrozen = true;
+        }
+
         /*if (collider.gameObject.layer.Equals("Portal"))
         {
             _enteredPortal = true;
