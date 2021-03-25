@@ -13,8 +13,10 @@ public class BlockShooterAI : MonoBehaviour
 
     float updatePath;
 
+    float updateWalk;
+
     //int updateTime = 5;
-    float movementSpeed = 1;
+    float movementSpeed = 5;
 
     //bool running = false;
     bool shooting = false;
@@ -29,6 +31,7 @@ public class BlockShooterAI : MonoBehaviour
     void Start()
     {
         updatePath = 0;
+        updateWalk = 0;
         start = transform.position;
         //distanceToGoal = 100;
 
@@ -62,24 +65,28 @@ public class BlockShooterAI : MonoBehaviour
             }
             else if (walking)
             {
-                agent.speed = 3.5f;
+                walking = false;
+                agent.speed = movementSpeed;
+                float x = Random.Range(-5, 5);
+                float y = Random.Range(-5, 5);
+                Vector3 walkLocation = new Vector3(x,y,0);
+                agent.destination = transform.position + walkLocation;
+                updateWalk = 10;
                 
             }
-            else
+            else if (updateWalk <= 5 && updateWalk >= 0)
             {
                 agent.speed = 0.1f;
-                //agent.isStopped = true;
-                //anim.Play("walk");
-                // Checks the distance to the goal and turns the 
-                //if (distanceToGoal < 10.0f)
-                //{
-                //    turn = !turn;
-                //}
+            }
+            else if(updateWalk <= 0)
+            {
+                walking = true;
             }
 
         }
         else
         {
+            updateWalk = updateWalk - 1 * Time.deltaTime;
             updatePath = updatePath - 1 * Time.deltaTime;
         }
         animator.SetFloat("Speed", agent.speed);
