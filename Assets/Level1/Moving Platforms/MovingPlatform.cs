@@ -21,33 +21,58 @@ public class MovingPlatform : MonoBehaviour
     Vector3 lastDisplacep = new Vector3(0, 0, 0);
     
     public bool isActive = false;
+    public bool falling = false;
+    float m = 10;
+
+    Rigidbody rb;
 
     void Start() {
         origR = transform.rotation;
         endr = origR * Quaternion.Euler(endrV);
 
+        rb = gameObject.GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
     void Update()
     {   
-        if (isActive)
+        if (isActive && !falling)
         {
-            displacep = Vector3.Lerp(zeros, endp, phase);
-            displacer = Quaternion.Lerp(origR, endr, phase);
+            MoveAround();
+        }
+        if (falling)
+        {
+            Fall();
+        }
+    }
 
-            phase += speed * phaseDir * Time.deltaTime;
+    void MoveAround()
+    {
+        displacep = Vector3.Lerp(zeros, endp, phase);
+        displacer = Quaternion.Lerp(origR, endr, phase);
 
-            amountp = displacep - lastDisplacep;
-            transform.position += amountp;
-            transform.rotation = displacer;
-            
-            lastDisplacep = displacep;
-            
-            if (phase >= 1 || phase <= 0)
-            {
-                phaseDir *= -1;
-            }
+        phase += speed * phaseDir * Time.deltaTime;
+
+        amountp = displacep - lastDisplacep;
+        transform.position += amountp;
+        transform.rotation = displacer;
+        
+        lastDisplacep = displacep;
+        
+        if (phase >= 1 || phase <= 0)
+        {
+            phaseDir *= -1;
+        }
+    }
+
+    void Fall()
+    {
+        //rb.isKinematic = false;
+        m += 30 * Time.deltaTime;
+        transform.position -= transform.up * m * Time.deltaTime;
+        if (transform.position.y < -100)
+        {
+            Destroy(gameObject);
         }
     }
 }

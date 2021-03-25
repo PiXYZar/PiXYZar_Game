@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1291,7 +1291,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c22777d6e868e4f2fb421913386b154e, type: 2}
+  - {fileID: 2100000, guid: 2fb00cb7db5f24e2e81c40725c3ca032, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2075,7 +2075,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c22777d6e868e4f2fb421913386b154e, type: 2}
+  - {fileID: 2100000, guid: 91ea72adcbf29474d9caa07c9dbe8f5f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -9421,7 +9421,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-1478
+  m_Name: pb_Mesh-86058
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -9584,7 +9584,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh14580
+  m_Name: pb_Mesh-86074
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -11747,12 +11747,37 @@ PrefabInstance:
     - target: {fileID: 1483344988530174607, guid: 222d655a872a98e449c8eeda759468d0,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 11.12
+      value: -3.0405655
+      objectReference: {fileID: 0}
+    - target: {fileID: 1483344988530174607, guid: 222d655a872a98e449c8eeda759468d0,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 13.900326
       objectReference: {fileID: 0}
     - target: {fileID: 1483344988530174607, guid: 222d655a872a98e449c8eeda759468d0,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 17.69
+      value: 10.746046
+      objectReference: {fileID: 0}
+    - target: {fileID: 1483344988530174607, guid: 222d655a872a98e449c8eeda759468d0,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.10689628
+      objectReference: {fileID: 0}
+    - target: {fileID: 1483344988530174607, guid: 222d655a872a98e449c8eeda759468d0,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.038596094
+      objectReference: {fileID: 0}
+    - target: {fileID: 1483344988530174607, guid: 222d655a872a98e449c8eeda759468d0,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.9344733
+      objectReference: {fileID: 0}
+    - target: {fileID: 1483344988530174607, guid: 222d655a872a98e449c8eeda759468d0,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.3374068
       objectReference: {fileID: 0}
     - target: {fileID: 3670534049775294015, guid: 222d655a872a98e449c8eeda759468d0,
         type: 3}
