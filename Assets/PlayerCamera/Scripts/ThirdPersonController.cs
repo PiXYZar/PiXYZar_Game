@@ -151,7 +151,7 @@ public class ThirdPersonController : PortalTraveller
         Vector3 centre2 = transform.position + _collider.center + Vector3.up * distToSpheres;
 
         // capsule collider excluding its own collider and with smaller radius to avoid hitting walls 
-        RaycastHit[] hits = Physics.CapsuleCastAll(centre1, centre2, _collider.radius * 0.95f, Vector3.down, 0.85f, _layerMask);
+        RaycastHit[] hits = Physics.CapsuleCastAll(centre1, centre2, _collider.radius * 0.95f, Vector3.down, 0.1f, _layerMask);
 
         bool jumpableObjects = false;
         foreach(RaycastHit hit in hits)
