@@ -15,7 +15,13 @@ public class TickAI : MonoBehaviour
     //This is a counter variable that determines when the tick should update its path planning. 1 = 1 second. 
     public float updatePath;
 
-    float movementSpeed = 2;
+    Quaternion startRotation;
+    Vector3 startPosition;
+
+    public float movementSpeed = 2;
+    public float attachDuration = 8;
+    public float attackDelay = 4;
+    public float massAddedToPlayer = 1;
 
     float attackDistance = 10.0f;
 
@@ -28,11 +34,11 @@ public class TickAI : MonoBehaviour
     NavMeshAgent agent;
     Animator animator;
 
-    Transform dad;
-
     void Start()
     {
         updatePath = 0;
+        startRotation = transform.localRotation;
+        startPosition = transform.localPosition;
         //start = transform.position;
         //distanceToGoal = 100;
 
@@ -43,10 +49,8 @@ public class TickAI : MonoBehaviour
     private void Update()
     {
         // Only update the path planning of 
-        if (updatePath <= 0 && !agent.isStopped && !attached)
-        {
-
-            // For when the penguin is fleeing from the player snowball instead of normal path planning
+        if (updatePath <= 0 && !attached)
+        { 
             if (running)
             {
                 //anim.Play("run");
@@ -70,12 +74,17 @@ public class TickAI : MonoBehaviour
         }
         else if (updatePath <= 0 && attached)
         {
+            Transform player = gameObject.transform.parent.parent;
+            player.gameObject.GetComponent<Rigidbody>().mass = player.GetComponent<Rigidbody>().mass -= 1;
+            gameObject.transform.parent.parent = null;
             attached = false;
             agent.enabled = true;
             agent.isStopped = false;
-            //gameObject.GetComponent<Collider>().enabled = true;
+            transform.localRotation = startRotation;
+            transform.localPosition = startPosition;
+            gameObject.GetComponent<Collider>().enabled = true;
             gameObject.transform.parent.parent = null;
-            gameObject.GetComponentInParent<Rigidbody>().isKinematic = true;
+            
         }
         else
         {
@@ -87,27 +96,9 @@ public class TickAI : MonoBehaviour
         animator.SetBool("Attached", attached);
     }
 
-    private void OnCollisionEnter(Collision other)
+    public void collidedWithPlayer(GameObject other)
     {
-        //Check if its the player
-        if (other.gameObject.tag == "Player")
-        {
-            Debug.Log("attached");
-            attached = true;
-            running = false;
-            attacking = false;
-            agent.speed = 0;
-            agent.isStopped = true;
-            agent.enabled = false;
-            updatePath = 6;
-            gameObject.transform.parent.parent = other.gameObject.transform.parent;
-            //gameObject.GetComponent<Collider>().enabled = false;
-        }
-    }
-
-    public void collidedWithPlayer(Transform other)
-    {
-        dad = other.transform.parent.parent;
+        other.GetComponentInParent<Rigidbody>().mass = other.GetComponentInParent<Rigidbody>().mass += massAddedToPlayer;
         Debug.Log("attached");
         attached = true;
         running = false;
@@ -115,13 +106,8 @@ public class TickAI : MonoBehaviour
         agent.speed = 0;
         agent.isStopped = true;
         agent.enabled = false;
-        updatePath = 6;
-        other.transform.parent.parent = GameObject.FindWithTag("Player").transform;
-    }
-
-    public void stopCollisionWithPlayer(Transform other)
-    {
-        other.transform.parent.parent = dad;
+        updatePath = attachDuration;
+        transform.parent.parent = GameObject.FindWithTag("Player").transform;
     }
 
     private void OnTriggerStay(Collider other)
@@ -151,7 +137,7 @@ public class TickAI : MonoBehaviour
                         {
                             agent.speed = movementSpeed * 10;
                             attacking = false;
-                            updatePath = 4f;
+                            updatePath = attackDelay;
                             //gameObject.GetComponentInParent<Rigidbody>().isKinematic = true;
                         }
                     }

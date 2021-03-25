@@ -4,24 +4,24 @@ using UnityEngine;
 using UnityEngine.AI;
 public class BlockShooterAI : MonoBehaviour
 {
-
-    public Transform goal;
     Vector3 start;
     Vector3 PlayerLocation;
 
-    //float distanceToGoal;
+    // The position that the tick will move towards
+    public Transform goal;
+
+
+    float distanceToGoal;
 
     float updatePath;
 
-    float updateWalk;
-
     //int updateTime = 5;
-    float movementSpeed = 5;
+    public float movementSpeed = 5;
 
     //bool running = false;
     bool shooting = false;
-    bool walking = false;
-    //bool turn = false;
+    bool walking = true;
+    bool turn = false;
 
     NavMeshAgent agent;
     Animator animator;
@@ -31,9 +31,8 @@ public class BlockShooterAI : MonoBehaviour
     void Start()
     {
         updatePath = 0;
-        updateWalk = 0;
         start = transform.position;
-        //distanceToGoal = 100;
+        distanceToGoal = 100;
 
         weaponScript = GetComponentInChildren<EnemyGun>();
         agent = GetComponentInParent<NavMeshAgent>();
@@ -56,6 +55,7 @@ public class BlockShooterAI : MonoBehaviour
             {
                 //anim.Play("run");
                 weaponScript.setActive(shooting);
+                walking = false;
                 shooting = false;
                 agent.isStopped = false;
                 agent.speed = 0.1f;
@@ -65,31 +65,45 @@ public class BlockShooterAI : MonoBehaviour
             }
             else if (walking)
             {
-                walking = false;
+                if (distanceToGoal < 3.0f)
+                {
+                    turn = !turn;
+                }
                 agent.speed = movementSpeed;
-                float x = Random.Range(-5, 5);
-                float y = Random.Range(-5, 5);
-                Vector3 walkLocation = new Vector3(x,y,0);
-                agent.destination = transform.position + walkLocation;
-                updateWalk = 10;
-                
+                if (!turn)
+                    agent.destination = goal.position;
+                else
+                    agent.destination = start;
+                updatePath = 8;
             }
-            else if (updateWalk <= 5 && updateWalk >= 0)
-            {
-                agent.speed = 0.1f;
-            }
-            else if(updateWalk <= 0)
-            {
-                walking = true;
-            }
-
         }
         else
         {
-            updateWalk = updateWalk - 1 * Time.deltaTime;
+            
             updatePath = updatePath - 1 * Time.deltaTime;
         }
+
+        if (distanceToGoal <= 3.0f)
+        {
+            agent.speed = 0.1f;
+        }
+
+        //Checks the distance to the goal and turns the
+        if (!turn)
+            distanceToGoal = Mathf.Abs(transform.position.x - goal.position.x) + Mathf.Abs(transform.position.z - goal.position.z);
+        else
+            distanceToGoal = Mathf.Abs(transform.position.x - start.x) + Mathf.Abs(transform.position.z - start.z);
+
         animator.SetFloat("Speed", agent.speed);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Player")
+        {
+            updatePath = 0.5f;
+            walking = false;
+        }
     }
 
     private void OnTriggerStay(Collider other)
@@ -100,7 +114,7 @@ public class BlockShooterAI : MonoBehaviour
             PlayerLocation = other.gameObject.transform.position;
             agent.destination = PlayerLocation;
 
-            if (updatePath <= 0 && shooting == false)
+            if (updatePath <= 0.5f && shooting == false)
             {
                 shooting = true;
                 agent.speed = 0.1f;
@@ -108,6 +122,14 @@ public class BlockShooterAI : MonoBehaviour
                 animator.SetBool("Shooting", shooting);
                 updatePath = 0.5f;
             }
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag == "Player")
+        {
+            walking = true;
         }
     }
 }

@@ -31,6 +31,7 @@ public class BlockShot : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+        gameObject.GetComponent<Rigidbody>().mass = 0.1f;
         Destroy(gameObject.GetComponent<Collider>());
         currentAge = 4;
         
