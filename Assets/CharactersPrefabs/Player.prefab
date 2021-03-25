@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1483344988021735716}
   - component: {fileID: 133738613122764444}
-  - component: {fileID: 133738613122764445}
   - component: {fileID: 133738613122764434}
   m_Layer: 8
   m_Name: Player
@@ -51,20 +50,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!136 &133738613122764445
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1483344988021735718}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 1
-  m_Direction: 1
-  m_Center: {x: -0.31, y: 0.31, z: -0.6}
 --- !u!114 &133738613122764434
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -85,6 +70,7 @@ MonoBehaviour:
   rotationSpeed: 2.5
   gravity: 0.75
   jumpingSpeed: 15
+  portalRadiusCheck: 3
   lockCursor: 0
 --- !u!1 &1483344988530174602
 GameObject:
@@ -205,7 +191,9 @@ MonoBehaviour:
   tower: {fileID: 0}
   smooth: 0.05
   changeOfViewSmooth: 0.5
-  offSet: {x: 0, y: 0, z: 0}
+  offSet: {x: -3, y: 10, z: 20}
+  firstPersonView: {fileID: 0}
+  insideRadius: 5
 --- !u!1001 &5903758354955704454
 PrefabInstance:
   m_ObjectHideFlags: 0

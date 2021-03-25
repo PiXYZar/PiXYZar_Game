@@ -33,6 +33,9 @@ public class BlockShot : MonoBehaviour
         if (false) //collision.gameObject.tag == "Player"
         {
             Debug.Log("Collided with player");
+            gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+            Destroy(gameObject.GetComponent<Collider>());
+            currentAge = 4;
             collision.gameObject.GetComponent<Rigidbody>().AddForce(transform.forward * power + transform.up * power, ForceMode.VelocityChange);
         }
         Destroy(gameObject);

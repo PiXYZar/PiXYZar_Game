@@ -40,4 +40,9 @@ public class EnemyGun : MonoBehaviour
         currentEnergy = Utils.UpdateEnergyCapped(currentEnergy,  maxEnergy, energyRegenRate);
         currenticd = Utils.UpdateEnergyCapped(currenticd, icd, 1f);
     }
+
+    public void setActive(bool state)
+    {
+        weaponActive = state;
+    }
 }
