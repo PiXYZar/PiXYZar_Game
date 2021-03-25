@@ -307,6 +307,8 @@ public class ThirdPersonController : PortalTraveller
 
         if ((transform.position - _triggerField.transform.TransformPoint(_center)).magnitude < _radius)
             _insideTower = true;
+        else
+            _insideTower = false;
         //Debug.Log(_insideTower);
     }
 

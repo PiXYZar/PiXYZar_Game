@@ -22,6 +22,8 @@ public class ExternalCameraController : MonoBehaviour
     private float _initAngle;
     private float _currAngle;
 
+    private Vector3 _targetPosition;
+
     private MeshRenderer _headRenderer;
 
     void Start()
@@ -32,6 +34,7 @@ public class ExternalCameraController : MonoBehaviour
         _initAngle = _currAngle = GetAngle();
 
         _headRenderer = firstPersonView.GetComponent<MeshRenderer>();
+        _targetPosition = Vector3.zero;
     }
 
     float GetAngle()
@@ -183,7 +186,7 @@ public class ExternalCameraController : MonoBehaviour
         Vector3 target = _playerScript.PlayerVelocity;
         target.y = transform.position.y;
 
-        Quaternion targetRotation = Quaternion.LookRotation(-firstPersonView.right);
+        Quaternion targetRotation = Quaternion.LookRotation(player.transform.forward);
         transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, 100 * Time.deltaTime);
 
         // make player invisible if distance to player too low 
