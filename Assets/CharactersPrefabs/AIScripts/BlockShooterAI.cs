@@ -18,6 +18,7 @@ public class BlockShooterAI : MonoBehaviour
 
     //bool running = false;
     bool shooting = false;
+    bool walking = false;
     //bool turn = false;
 
     NavMeshAgent agent;
@@ -59,6 +60,11 @@ public class BlockShooterAI : MonoBehaviour
                 
                 updatePath = 4;
             }
+            else if (walking)
+            {
+                agent.speed = 3.5f;
+                
+            }
             else
             {
                 agent.speed = 0.1f;
@@ -82,7 +88,7 @@ public class BlockShooterAI : MonoBehaviour
     private void OnTriggerStay(Collider other)
     {
         // Check within trigger radius for the player 
-        if (other.gameObject.layer == 8)
+        if (other.gameObject.tag == "Player")
         {
             PlayerLocation = other.gameObject.transform.position;
             agent.destination = PlayerLocation;
