@@ -5,7 +5,7 @@ using UnityEngine;
 public class MovingPlatformTrigger : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other) {
-        if (other.gameObject.tag == "player")
+        if (other.gameObject.CompareTag("player"))
         {
             other.transform.parent = transform.parent;
             transform.parent.GetComponent<MovingPlatform>().isActive = true;
@@ -13,7 +13,7 @@ public class MovingPlatformTrigger : MonoBehaviour
     }
 
     private void OnTriggerExit(Collider other) {
-        if (other.gameObject.tag == "player")
+        if (other.gameObject.CompareTag("player"))
         {
             other.transform.parent = null;
             transform.parent.GetComponent<MovingPlatform>().isActive = false;
