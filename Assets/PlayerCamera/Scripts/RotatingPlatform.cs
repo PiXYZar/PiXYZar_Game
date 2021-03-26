@@ -6,13 +6,16 @@ using System;
 public class RotatingPlatform : MonoBehaviour
 {
     public GameObject tower;
+    public GameObject player;
     public float speed = 5.0f;
     public float rotationSpeed = 2.5f;
 
     //public float updateFrequencySeconds = 20f;
 
-    private Rigidbody _rb;
+    //private Rigidbody _rb;
     private Transform _modelTransform;
+    private Vector3 _velocity;
+    //private Rigidbody _playerRb;
 
     //private float _timer = 0.0f;
     //private Vector2 _randomDir;
@@ -21,13 +24,14 @@ public class RotatingPlatform : MonoBehaviour
     void Start()
     {
         // check if asset has rigid body, if yes, store it 
-        if (GetComponent<Rigidbody>())
-            _rb = GetComponent<Rigidbody>();
-        else
-            Debug.LogError("Player asset requires a rigid body component.");
+        ///if (GetComponent<Rigidbody>())
+        //    _rb = GetComponent<Rigidbody>();
+       // else
+        //    Debug.LogError("Player asset requires a rigid body component.");
         //_randomDir = Vector2.zero;
 
         _modelTransform = gameObject.transform.GetChild(0);
+        //_playerRb = player.GetComponent<Rigidbody>();
 
         Translate();
         Rotate(100);
@@ -81,12 +85,17 @@ public class RotatingPlatform : MonoBehaviour
         Vector3 forward = new Vector3(xDir * zVel, 0.0f, zDir * zVel);
         //Vector3 sideways = targetRotation * new Vector3(xDir * xVel, 0.0f, zDir * xVel);
         //_playerVel = (forward + sideways).normalized * speed;
-        _rb.velocity = forward.normalized * speed;
+        //_rb.velocity = forward.normalized * speed;
+        //_playerRb.velocity += _rb.velocity;
+        _velocity = forward.normalized * speed;
+        //Debug.Log(_playerRb.velocity);
+        transform.position += forward.normalized * speed;
+        
     }
 
     void Rotate(float rotSpeed)
     {
-        Quaternion targetRot = Quaternion.LookRotation(_rb.velocity, Vector3.up);
+        Quaternion targetRot = Quaternion.LookRotation(_velocity, Vector3.up);
         targetRot = Quaternion.Euler(0.0f, 90.0f, 0.0f) * targetRot;
         _modelTransform.rotation = Quaternion.Lerp(_modelTransform.rotation, targetRot, rotSpeed * Time.deltaTime);
     }

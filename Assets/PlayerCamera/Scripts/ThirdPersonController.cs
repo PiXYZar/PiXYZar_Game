@@ -330,17 +330,18 @@ public class ThirdPersonController : PortalTraveller
                 _modelTransform.rotation = Quaternion.Lerp(_modelTransform.rotation, targetRot, rotationSpeed * Time.deltaTime);
             }
         }
-
+        
+        /*
         if ((transform.position - _triggerField.transform.TransformPoint(_center)).magnitude < _radius)
             _insideTower = true;
         else
-            _insideTower = false;
+            _insideTower = false;*/
         //Debug.Log(_insideTower);
     }
 
     void OnTriggerEnter(Collider collider)
     {
-        //Debug.Log("entering " + collider.gameObject.name);
+        Debug.Log("entering " + collider.gameObject.name);
 
         if (collider.gameObject.tag == "Freeze Trap")
         {
@@ -361,21 +362,14 @@ public class ThirdPersonController : PortalTraveller
                 _portalCamera.enabled = true;
                 
             }
-        }
-        else if (collider.gameObject.name.Equals("Trigger Field"))
-        {
-            _insideTower = true;
-        }
-        else
-        {
-            _insideTower = false;
-        }
-        */
+        }*/
+
+     
     }
 
     void OnTriggerExit(Collider collider)
     {
-        //Debug.Log("exiting  " + collider.gameObject.name);
+        Debug.Log("exiting  " + collider.gameObject.name);
         /*
         if (collider.gameObject.layer.Equals("Portal"))
         {
@@ -396,6 +390,15 @@ public class ThirdPersonController : PortalTraveller
             _insidePortal = true;
         }
         */
+
+        if (collider.gameObject.name.Equals("Trigger Field"))
+        {
+            _insideTower = true;
+        }
+        else
+        {
+            _insideTower = false;
+        }
     }
 
     public override void Teleport(Transform fromPortal, Transform toPortal, Vector3 pos, Quaternion rot)
