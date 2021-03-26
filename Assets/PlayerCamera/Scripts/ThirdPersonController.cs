@@ -264,8 +264,6 @@ public class ThirdPersonController : PortalTraveller
             Vector3 forward = new Vector3(xDir * zVel, 0.0f, zDir * zVel);
             Vector3 sideways = targetRotation * new Vector3(xDir * xVel, 0.0f, zDir * xVel);
             _playerVel = (forward + sideways).normalized * speed;
-            Debug.Log("check4");
-            Debug.Log(_playerVel);
         } 
         else
         {
@@ -295,7 +293,6 @@ public class ThirdPersonController : PortalTraveller
         {
             _verticalVel -= gravity;
             _playerVel.y = _verticalVel;
-            Debug.Log("check3");
         }
 
         animator.SetFloat("Vertical Speed", _verticalVel);
@@ -318,15 +315,12 @@ public class ThirdPersonController : PortalTraveller
     {
         Translate();
         Jump();
-        Debug.Log("check2");
 
         if (_freezeTrap != null && _freezeTrap.IsFrozen == true)
             _rb.velocity = Vector3.zero;
         else
         {
-            Debug.Log("check1");
             _rb.velocity = _playerVel;
-            Debug.Log(_rb.velocity);
 
             if (_playerVel != Vector3.zero && _verticalVel == 0.0f)
             {
@@ -346,7 +340,7 @@ public class ThirdPersonController : PortalTraveller
 
     void OnTriggerEnter(Collider collider)
     {
-        Debug.Log("entering " + collider.gameObject.name);
+        //Debug.Log("entering " + collider.gameObject.name);
 
         if (collider.gameObject.tag == "Freeze Trap")
         {
@@ -381,7 +375,7 @@ public class ThirdPersonController : PortalTraveller
 
     void OnTriggerExit(Collider collider)
     {
-        Debug.Log("exiting  " + collider.gameObject.name);
+        //Debug.Log("exiting  " + collider.gameObject.name);
         /*
         if (collider.gameObject.layer.Equals("Portal"))
         {
@@ -395,7 +389,7 @@ public class ThirdPersonController : PortalTraveller
 
     void OnTriggerStay(Collider collider)
     {
-        Debug.Log("inside  " + collider.gameObject.name);
+        //Debug.Log("inside  " + collider.gameObject.name);
         /*
         if (collider.gameObject.layer.Equals("Portal"))
         {
