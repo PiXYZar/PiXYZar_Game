@@ -22,6 +22,7 @@ public class MovingPlatform : MonoBehaviour
     
     public bool isActive = false;
     public bool falling = false;
+    public bool resetting = false;
     float m = 10;
 
     Rigidbody rb;
@@ -36,7 +37,7 @@ public class MovingPlatform : MonoBehaviour
     // Update is called once per frame
     void Update()
     {   
-        if (isActive && !falling)
+        if (!falling && (isActive || resetting))
         {
             MoveAround();
         }
@@ -48,6 +49,10 @@ public class MovingPlatform : MonoBehaviour
 
     void MoveAround()
     {
+        if (resetting) 
+        {
+            
+        }
         displacep = Vector3.Lerp(zeros, endp, phase);
         displacer = Quaternion.Lerp(origR, endr, phase);
 
@@ -59,15 +64,18 @@ public class MovingPlatform : MonoBehaviour
         
         lastDisplacep = displacep;
         
-        if (phase >= 1 || phase <= 0)
+        if (phase >= 1)
         {
-            phaseDir *= -1;
+            phaseDir = -1;
+        }
+        else if (phase <= 0)
+        {
+            phaseDir = 1;
         }
     }
 
     void Fall()
     {
-        //rb.isKinematic = false;
         m += 30 * Time.deltaTime;
         transform.position -= transform.up * m * Time.deltaTime;
         if (transform.position.y < -100)
