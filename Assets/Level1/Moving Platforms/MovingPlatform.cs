@@ -59,15 +59,18 @@ public class MovingPlatform : MonoBehaviour
         
         lastDisplacep = displacep;
         
-        if (phase >= 1 || phase <= 0)
+        if (phase >= 1)
         {
-            phaseDir *= -1;
+            phaseDir = -1;
+        }
+        else if (phase <= 0)
+        {
+            phaseDir = 1;
         }
     }
 
     void Fall()
     {
-        //rb.isKinematic = false;
         m += 30 * Time.deltaTime;
         transform.position -= transform.up * m * Time.deltaTime;
         if (transform.position.y < -100)
