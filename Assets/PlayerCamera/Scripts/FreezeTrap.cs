@@ -11,7 +11,6 @@ public class FreezeTrap : MonoBehaviour
     private bool _isFrozen;
     private MeshRenderer _renderer;
 
-
     public bool IsFrozen { get { return _isFrozen; } set { _isFrozen = value; } }
 
     void Start()

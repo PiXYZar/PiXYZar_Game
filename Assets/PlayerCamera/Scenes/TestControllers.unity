@@ -4395,12 +4395,12 @@ PrefabInstance:
     - target: {fileID: 1483344988021735716, guid: 222d655a872a98e449c8eeda759468d0,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1
+      value: 106.9
       objectReference: {fileID: 0}
     - target: {fileID: 1483344988021735716, guid: 222d655a872a98e449c8eeda759468d0,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -43.9
+      value: -99.8
       objectReference: {fileID: 0}
     - target: {fileID: 1483344988021735716, guid: 222d655a872a98e449c8eeda759468d0,
         type: 3}
@@ -4482,7 +4482,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 507420740}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b4981e5b7bea9284c9a592b91bea5212, type: 3}
   m_Name: 
@@ -6556,9 +6556,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8425117071859709290, guid: 5e720ecdeedf0c546a541f9e3821017c,
         type: 3}
+      propertyPath: speed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8425117071859709290, guid: 5e720ecdeedf0c546a541f9e3821017c,
+        type: 3}
       propertyPath: tower
       value: 
       objectReference: {fileID: 196714770}
+    - target: {fileID: 8425117071859709290, guid: 5e720ecdeedf0c546a541f9e3821017c,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 507420740}
     - target: {fileID: 8425117071859709292, guid: 5e720ecdeedf0c546a541f9e3821017c,
         type: 3}
       propertyPath: m_RootOrder
@@ -6614,5 +6624,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8425117071859709291, guid: 5e720ecdeedf0c546a541f9e3821017c, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 5e720ecdeedf0c546a541f9e3821017c, type: 3}
