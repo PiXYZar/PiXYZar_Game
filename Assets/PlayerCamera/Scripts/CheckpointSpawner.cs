@@ -45,14 +45,14 @@ public class CheckpointSpawner : MonoBehaviour
                 _index += 1;
                 _previousCP = _checkpointList[_index - 1].position;
                 _currentCP = _checkpointList[_index].position;
-                Debug.Log("[SUCCESS] Reached checkpoint number " + (_index - 1) + "/" + _checkpointList.Count);
+                Debug.Log("[SUCCESS] Reached checkpoint number " + (_index - 1) + "/" + (_checkpointList.Count - 1));
             }
         }
 
         // if dead
         if (_dead)
         {
-            Debug.Log("[DEAD] Restarting at checkpoint number " + (_index - 1) + "/" + _checkpointList.Count); 
+            Debug.Log("[DEAD] Restarting at checkpoint number " + (_index - 1) + "/" + (_checkpointList.Count - 1)); 
             transform.position = _previousCP;
             _dead = false;
         }
