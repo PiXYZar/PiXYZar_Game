@@ -22428,7 +22428,7 @@ Mesh:
     vertexCount: 24
     localAABB:
       m_Center: {x: 0, y: 0, z: 0}
-      m_Extent: {x: 0, y: 0, z: 0}
+      m_Extent: {x: 3.351962, y: 0.48388863, z: 3.7135773}
   m_Shapes:
     vertices: []
     shapes: []
@@ -42076,12 +42076,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e0c5b8596b3e8140a7df22becc251e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.3
   endp: {x: 0, y: 0, z: 0}
   endrV: {x: 0, y: 140, z: 0}
+  speed: 0.3
+  fall_speed: 0.05
   isActive: 1
   falling: 0
-  resetting: 0
+  goingtobeginning: 0
+  goingtoend: 0
 --- !u!43 &1892589836
 Mesh:
   m_ObjectHideFlags: 0
@@ -42854,12 +42856,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e0c5b8596b3e8140a7df22becc251e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.5
   endp: {x: 0, y: 0, z: 0}
   endrV: {x: 0, y: 0, z: 45}
+  speed: 0.5
+  fall_speed: 0.05
   isActive: 1
   falling: 0
-  resetting: 0
+  goingtobeginning: 0
+  goingtoend: 0
 --- !u!43 &1950162298
 Mesh:
   m_ObjectHideFlags: 0
