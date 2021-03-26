@@ -24,6 +24,7 @@ public class ThirdPersonController : PortalTraveller
 
     private Rigidbody _rb;
     private CapsuleCollider _collider;
+    private BoxCollider _boxCollider;
 
     private float _inputX, _inputY, _inputZ;
 
@@ -75,6 +76,11 @@ public class ThirdPersonController : PortalTraveller
         // check if component has collider, if yes, store y bounds 
         if (GetComponentInChildren<CapsuleCollider>())
             _collider = GetComponentInChildren<CapsuleCollider>();
+        else
+            Debug.LogError("Player asset requires a capsule collider component.");
+
+        if (GetComponentInChildren<BoxCollider>())
+            _boxCollider = GetComponentInChildren<BoxCollider>();
         else
             Debug.LogError("Player asset requires a capsule collider component.");
     }
@@ -146,6 +152,7 @@ public class ThirdPersonController : PortalTraveller
 
     bool IsGrounded()
     {
+        /*
         // distance from center of collider to each of the centres of the spheres that make up the capsule 
         float distToSpheres = _collider.height / 2 - _collider.radius;
 
@@ -167,9 +174,20 @@ public class ThirdPersonController : PortalTraveller
                 jumpableObjects = true;
             }
         }
+        */
+        bool jumpableObjects = false;
+        RaycastHit hit;
+        bool grounded = Physics.BoxCast(_boxCollider.bounds.center, _boxCollider.bounds.extents / 2f, Vector3.down,
+            out hit, _modelTransform.rotation, 0.25f);
+
+        if (grounded && hit.collider.isTrigger == false)
+        {
+            jumpableObjects = true;
+        }
 
         // if there is a hit, it is grounded 
-        if (hits.Length > 0 && jumpableObjects)
+        //if (hits.Length > 0 && jumpableObjects)
+        if (grounded && jumpableObjects)
         {
             return true;
         }
@@ -246,6 +264,8 @@ public class ThirdPersonController : PortalTraveller
             Vector3 forward = new Vector3(xDir * zVel, 0.0f, zDir * zVel);
             Vector3 sideways = targetRotation * new Vector3(xDir * xVel, 0.0f, zDir * xVel);
             _playerVel = (forward + sideways).normalized * speed;
+            Debug.Log("check4");
+            Debug.Log(_playerVel);
         } 
         else
         {
@@ -275,6 +295,7 @@ public class ThirdPersonController : PortalTraveller
         {
             _verticalVel -= gravity;
             _playerVel.y = _verticalVel;
+            Debug.Log("check3");
         }
 
         animator.SetFloat("Vertical Speed", _verticalVel);
@@ -297,12 +318,15 @@ public class ThirdPersonController : PortalTraveller
     {
         Translate();
         Jump();
+        Debug.Log("check2");
 
         if (_freezeTrap != null && _freezeTrap.IsFrozen == true)
             _rb.velocity = Vector3.zero;
         else
         {
+            Debug.Log("check1");
             _rb.velocity = _playerVel;
+            Debug.Log(_rb.velocity);
 
             if (_playerVel != Vector3.zero && _verticalVel == 0.0f)
             {
