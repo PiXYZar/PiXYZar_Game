@@ -8,6 +8,7 @@ public class MovingPlatform : MonoBehaviour
     public Vector3 endp = new Vector3(0, 0, 0);
     public Vector3 endrV = new Vector3(0, 0, 0);
     public float speed = 0f;
+    public float fall_speed = 0.05f;
 
     // Working vars
     float phase = 0f;
@@ -21,24 +22,26 @@ public class MovingPlatform : MonoBehaviour
     Quaternion displacer;
     Vector3 lastDisplacep = new Vector3(0, 0, 0);
     Rigidbody rb;
+    float orig_fall_speed;
 
     [Header("State toggles")]
     public bool isActive = false;
     public bool falling = false;
-    public bool resetting = false;
-    float fall_speed = 10;
+    public bool goingtobeginning = false;
+    public bool goingtoend = false;
 
     void Start() {
         origP = transform.position;
         origR = transform.rotation;
         endr = origR * Quaternion.Euler(endrV);
         rb = gameObject.GetComponent<Rigidbody>();
+        orig_fall_speed = fall_speed;
     }
 
     // Update is called once per frame
     void Update()
     {   
-        if (!falling && (isActive || resetting))
+        if (!falling && (isActive || goingtobeginning || goingtoend))
         {
             MoveAround();
         }
@@ -50,15 +53,23 @@ public class MovingPlatform : MonoBehaviour
 
     void MoveAround()
     {
-        if (resetting) 
+        if (goingtobeginning) 
         {
             phaseDir = -1;
             if (phase <= 0)
             {
-                resetting = false;
+                goingtobeginning = false;
             }
         }
-        
+        else if (goingtoend) 
+        {
+            phaseDir = 1;
+            if (phase >= 1)
+            {
+                goingtoend = false;
+            }
+        }
+
         displacep = Vector3.Lerp(zeros, endp, phase);
         displacer = Quaternion.Lerp(origR, endr, phase);
         
@@ -82,7 +93,7 @@ public class MovingPlatform : MonoBehaviour
 
     void Fall()
     {
-        fall_speed += 30 * Time.deltaTime;
+        fall_speed += fall_speed * Time.deltaTime;
         transform.position -= transform.up * fall_speed * Time.deltaTime;
         if (transform.position.y < -100)
         {
@@ -94,6 +105,9 @@ public class MovingPlatform : MonoBehaviour
     {
         transform.position = origP;
         transform.rotation = origR;
+        fall_speed = orig_fall_speed;
         phase = 0;
+        falling = false;
+        isActive = false;
     }
 }
