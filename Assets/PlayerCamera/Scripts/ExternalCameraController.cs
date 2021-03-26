@@ -152,12 +152,8 @@ public class ExternalCameraController : MonoBehaviour
 
         if (inside)
         {
-            //Debug.Log("check10");
             Vector3 local = player.transform.position - tower.transform.position;
-            Debug.Log(local);
-            Debug.Log(local.magnitude);
             Vector3 updated = local.normalized * insideRadius;
-            Debug.Log(updated);
 
             //_targetPosition = tower.GetComponentInChildren<Collider>().bounds.center;
             
@@ -166,8 +162,7 @@ public class ExternalCameraController : MonoBehaviour
         }
         else
             _targetPosition = _target.position + rotateOffset * offSet;
-
-        //Debug.Log(inside);
+        
 
         // move camera
         transform.position = Vector3.SmoothDamp(transform.position, _targetPosition, ref _camVel, 0.05f);
