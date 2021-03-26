@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class MovingPlatform : MonoBehaviour
 {
-    public float speed = 0.5f;
     [Header("End position/rotation")]
-    public Vector3 endp = new Vector3(0, 0, 18f);
-    public Vector3 endrV = new Vector3(0, 90f, 0);
+    public Vector3 endp = new Vector3(0, 0, 0);
+    public Vector3 endrV = new Vector3(0, 0, 0);
+    public float speed = 0f;
 
+    // Working vars
     float phase = 0f;
     float phaseDir = 1f;
     Vector3 zeros = new Vector3(0, 0, 0);
@@ -16,24 +17,21 @@ public class MovingPlatform : MonoBehaviour
     Quaternion origR;
     Quaternion endr;
     Vector3 amountp;
-    Quaternion amountr;
     Vector3 displacep;
     Quaternion displacer;
     Vector3 lastDisplacep = new Vector3(0, 0, 0);
-    
+    Rigidbody rb;
+
     [Header("State toggles")]
     public bool isActive = false;
     public bool falling = false;
     public bool resetting = false;
     float fall_speed = 10;
 
-    Rigidbody rb;
-
     void Start() {
         origP = transform.position;
         origR = transform.rotation;
         endr = origR * Quaternion.Euler(endrV);
-
         rb = gameObject.GetComponent<Rigidbody>();
     }
 
@@ -60,9 +58,10 @@ public class MovingPlatform : MonoBehaviour
                 resetting = false;
             }
         }
+        
         displacep = Vector3.Lerp(zeros, endp, phase);
         displacer = Quaternion.Lerp(origR, endr, phase);
-
+        
         phase += speed * phaseDir * Time.deltaTime;
 
         amountp = displacep - lastDisplacep;
