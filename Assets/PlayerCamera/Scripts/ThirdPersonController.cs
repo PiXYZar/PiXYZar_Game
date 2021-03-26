@@ -20,6 +20,8 @@ public class ThirdPersonController : PortalTraveller
 
     public bool lockCursor = false;
 
+    public LayerMask mask;
+
     private Vector3 _towerCentre;
 
     private Rigidbody _rb;
@@ -63,6 +65,7 @@ public class ThirdPersonController : PortalTraveller
 
     private bool _frozen;
     private FreezeTrap _freezeTrap;
+   
 
 
     void Awake()
@@ -178,7 +181,7 @@ public class ThirdPersonController : PortalTraveller
         bool jumpableObjects = false;
         RaycastHit hit;
         bool grounded = Physics.BoxCast(_boxCollider.bounds.center, _boxCollider.bounds.extents / 2f, Vector3.down,
-            out hit, _modelTransform.rotation, 0.25f);
+            out hit, _modelTransform.rotation, 0.5f);
 
         if (grounded && hit.collider.isTrigger == false)
         {
@@ -341,7 +344,7 @@ public class ThirdPersonController : PortalTraveller
 
     void OnTriggerEnter(Collider collider)
     {
-        Debug.Log("entering " + collider.gameObject.name);
+        //Debug.Log("entering " + collider.gameObject.name);
 
         if (collider.gameObject.tag == "Freeze Trap")
         {
@@ -369,7 +372,7 @@ public class ThirdPersonController : PortalTraveller
 
     void OnTriggerExit(Collider collider)
     {
-        Debug.Log("exiting  " + collider.gameObject.name);
+        //Debug.Log("exiting  " + collider.gameObject.name);
         /*
         if (collider.gameObject.layer.Equals("Portal"))
         {
