@@ -20,10 +20,15 @@ public class ThirdPersonController : PortalTraveller
 
     public bool lockCursor = false;
 
+    public bool invertControls = false;
+
+    public LayerMask mask;
+
     private Vector3 _towerCentre;
 
     private Rigidbody _rb;
     private CapsuleCollider _collider;
+    private BoxCollider _boxCollider;
 
     private float _inputX, _inputY, _inputZ;
 
@@ -62,6 +67,7 @@ public class ThirdPersonController : PortalTraveller
 
     private bool _frozen;
     private FreezeTrap _freezeTrap;
+   
 
 
     void Awake()
@@ -75,6 +81,11 @@ public class ThirdPersonController : PortalTraveller
         // check if component has collider, if yes, store y bounds 
         if (GetComponentInChildren<CapsuleCollider>())
             _collider = GetComponentInChildren<CapsuleCollider>();
+        else
+            Debug.LogError("Player asset requires a capsule collider component.");
+
+        if (GetComponentInChildren<BoxCollider>())
+            _boxCollider = GetComponentInChildren<BoxCollider>();
         else
             Debug.LogError("Player asset requires a capsule collider component.");
     }
@@ -146,6 +157,7 @@ public class ThirdPersonController : PortalTraveller
 
     bool IsGrounded()
     {
+        /*
         // distance from center of collider to each of the centres of the spheres that make up the capsule 
         float distToSpheres = _collider.height / 2 - _collider.radius;
 
@@ -167,9 +179,20 @@ public class ThirdPersonController : PortalTraveller
                 jumpableObjects = true;
             }
         }
+        */
+        bool jumpableObjects = false;
+        RaycastHit hit;
+        bool grounded = Physics.BoxCast(_boxCollider.bounds.center, _boxCollider.bounds.extents / 2f, Vector3.down,
+            out hit, _modelTransform.rotation, 0.5f);
+
+        if (grounded && hit.collider.isTrigger == false)
+        {
+            jumpableObjects = true;
+        }
 
         // if there is a hit, it is grounded 
-        if (hits.Length > 0 && jumpableObjects)
+        //if (hits.Length > 0 && jumpableObjects)
+        if (grounded && jumpableObjects)
         {
             return true;
         }
@@ -245,6 +268,24 @@ public class ThirdPersonController : PortalTraveller
             Quaternion targetRotation = Quaternion.Euler(0.0f, Mathf.Abs(xVel) * 90.0f, 0.0f);
             Vector3 forward = new Vector3(xDir * zVel, 0.0f, zDir * zVel);
             Vector3 sideways = targetRotation * new Vector3(xDir * xVel, 0.0f, zDir * xVel);
+
+            if (invertControls)
+            {                
+                if (_insideTower && _exitedPortal)
+                {
+                    targetRotation = Quaternion.Euler(0.0f, Mathf.Abs(zVel) * -90.0f, 0.0f);
+                    forward = new Vector3(xDir * -xVel, 0.0f, zDir * -xVel);
+                    sideways = targetRotation * new Vector3(xDir * zVel, 0.0f, zDir * zVel);
+                }
+                else
+                {
+                    targetRotation = Quaternion.Euler(0.0f, Mathf.Abs(zVel) * -90.0f, 0.0f);
+                    forward = new Vector3(xDir * xVel, 0.0f, zDir * xVel);
+                    sideways = targetRotation * new Vector3(xDir * zVel, 0.0f, zDir * zVel);
+                }
+               
+            }
+
             _playerVel = (forward + sideways).normalized * speed;
         } 
         else
@@ -312,17 +353,18 @@ public class ThirdPersonController : PortalTraveller
                 _modelTransform.rotation = Quaternion.Lerp(_modelTransform.rotation, targetRot, rotationSpeed * Time.deltaTime);
             }
         }
-
+        
+        /*
         if ((transform.position - _triggerField.transform.TransformPoint(_center)).magnitude < _radius)
             _insideTower = true;
         else
-            _insideTower = false;
+            _insideTower = false;*/
         //Debug.Log(_insideTower);
     }
 
     void OnTriggerEnter(Collider collider)
     {
-        Debug.Log("entering " + collider.gameObject.name);
+        //Debug.Log("entering " + collider.gameObject.name);
 
         if (collider.gameObject.tag == "Freeze Trap")
         {
@@ -343,8 +385,36 @@ public class ThirdPersonController : PortalTraveller
                 _portalCamera.enabled = true;
                 
             }
+        }*/
+
+     
+    }
+
+    void OnTriggerExit(Collider collider)
+    {
+        //Debug.Log("exiting  " + collider.gameObject.name);
+        
+        if (collider.gameObject.layer.Equals("Portal"))
+        {
+            Debug.Log("check5");
+            _exitedPortal = true;
+            //_portalCamera.enabled = false;
+            //_mainCamera.enabled = true;
         }
-        else if (collider.gameObject.name.Equals("Trigger Field"))
+        
+    }
+
+    void OnTriggerStay(Collider collider)
+    {
+        //Debug.Log("inside  " + collider.gameObject.name);
+        /*
+        if (collider.gameObject.layer.Equals("Portal"))
+        {
+            _insidePortal = true;
+        }
+        */
+
+        if (collider.gameObject.name.Equals("Trigger Field"))
         {
             _insideTower = true;
         }
@@ -352,32 +422,6 @@ public class ThirdPersonController : PortalTraveller
         {
             _insideTower = false;
         }
-        */
-    }
-
-    void OnTriggerExit(Collider collider)
-    {
-        Debug.Log("exiting  " + collider.gameObject.name);
-        /*
-        if (collider.gameObject.layer.Equals("Portal"))
-        {
-            Debug.Log("check5");
-            _exitedPortal = true;
-            _portalCamera.enabled = false;
-            _mainCamera.enabled = true;
-        }
-        */
-    }
-
-    void OnTriggerStay(Collider collider)
-    {
-        Debug.Log("inside  " + collider.gameObject.name);
-        /*
-        if (collider.gameObject.layer.Equals("Portal"))
-        {
-            _insidePortal = true;
-        }
-        */
     }
 
     public override void Teleport(Transform fromPortal, Transform toPortal, Vector3 pos, Quaternion rot)
