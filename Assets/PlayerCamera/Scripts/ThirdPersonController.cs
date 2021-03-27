@@ -270,10 +270,20 @@ public class ThirdPersonController : PortalTraveller
             Vector3 sideways = targetRotation * new Vector3(xDir * xVel, 0.0f, zDir * xVel);
 
             if (invertControls)
-            {
-                targetRotation = Quaternion.Euler(0.0f, Mathf.Abs(zVel) * -90.0f, 0.0f);
-                forward = new Vector3(xDir * xVel, 0.0f, zDir * xVel);
-                sideways = targetRotation * new Vector3(xDir * zVel, 0.0f, zDir * zVel);
+            {                
+                if (_insideTower && _exitedPortal)
+                {
+                    targetRotation = Quaternion.Euler(0.0f, Mathf.Abs(zVel) * -90.0f, 0.0f);
+                    forward = new Vector3(xDir * -xVel, 0.0f, zDir * -xVel);
+                    sideways = targetRotation * new Vector3(xDir * zVel, 0.0f, zDir * zVel);
+                }
+                else
+                {
+                    targetRotation = Quaternion.Euler(0.0f, Mathf.Abs(zVel) * -90.0f, 0.0f);
+                    forward = new Vector3(xDir * xVel, 0.0f, zDir * xVel);
+                    sideways = targetRotation * new Vector3(xDir * zVel, 0.0f, zDir * zVel);
+                }
+               
             }
 
             _playerVel = (forward + sideways).normalized * speed;
@@ -383,15 +393,15 @@ public class ThirdPersonController : PortalTraveller
     void OnTriggerExit(Collider collider)
     {
         //Debug.Log("exiting  " + collider.gameObject.name);
-        /*
+        
         if (collider.gameObject.layer.Equals("Portal"))
         {
             Debug.Log("check5");
             _exitedPortal = true;
-            _portalCamera.enabled = false;
-            _mainCamera.enabled = true;
+            //_portalCamera.enabled = false;
+            //_mainCamera.enabled = true;
         }
-        */
+        
     }
 
     void OnTriggerStay(Collider collider)
