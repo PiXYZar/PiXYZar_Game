@@ -20,6 +20,8 @@ public class ThirdPersonController : PortalTraveller
 
     public bool lockCursor = false;
 
+    public bool invertControls = false;
+
     public LayerMask mask;
 
     private Vector3 _towerCentre;
@@ -266,6 +268,14 @@ public class ThirdPersonController : PortalTraveller
             Quaternion targetRotation = Quaternion.Euler(0.0f, Mathf.Abs(xVel) * 90.0f, 0.0f);
             Vector3 forward = new Vector3(xDir * zVel, 0.0f, zDir * zVel);
             Vector3 sideways = targetRotation * new Vector3(xDir * xVel, 0.0f, zDir * xVel);
+
+            if (invertControls)
+            {
+                targetRotation = Quaternion.Euler(0.0f, Mathf.Abs(zVel) * -90.0f, 0.0f);
+                forward = new Vector3(xDir * xVel, 0.0f, zDir * xVel);
+                sideways = targetRotation * new Vector3(xDir * zVel, 0.0f, zDir * zVel);
+            }
+
             _playerVel = (forward + sideways).normalized * speed;
         } 
         else
