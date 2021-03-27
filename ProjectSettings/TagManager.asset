@@ -8,6 +8,7 @@ TagManager:
   - Freeze Trap
   - Bullet
   - Lava
+  - change
   layers:
   - Default
   - TransparentFX
