@@ -237,6 +237,11 @@ public class ThirdPersonController : PortalTraveller
         // local position of player wrt tower centre 
         Vector3 playerLocal = tower.transform.InverseTransformPoint(transform.position);
 
+        if (tower.gameObject.name == "Inverted Tower")
+        {
+            playerLocal.z = -playerLocal.z;
+        }
+
         // calculate x and z values for player movement 
         float hypotenuse = new Vector2(playerLocal.x, playerLocal.z).magnitude;
         float xDir = -playerLocal.z / hypotenuse;
@@ -276,6 +281,7 @@ public class ThirdPersonController : PortalTraveller
                     targetRotation = Quaternion.Euler(0.0f, Mathf.Abs(zVel) * -90.0f, 0.0f);
                     forward = new Vector3(xDir * -xVel, 0.0f, zDir * -xVel);
                     sideways = targetRotation * new Vector3(xDir * zVel, 0.0f, zDir * zVel);
+
                 }
                 else
                 {
@@ -285,8 +291,14 @@ public class ThirdPersonController : PortalTraveller
                 }
                
             }
-
+            //Debug.DrawRay(transform.position, forward, Color.red, 2.0f);
+            //Debug.DrawRay(transform.position, sideways, Color.green, 2.0f);
+            Debug.DrawRay(tower.transform.position, playerLocal, Color.blue, 2.0f);
             _playerVel = (forward + sideways).normalized * speed;
+
+
+
+           
         } 
         else
         {
@@ -347,7 +359,7 @@ public class ThirdPersonController : PortalTraveller
 
             if (_playerVel != Vector3.zero && _verticalVel == 0.0f)
             {
-                //Debug.DrawRay(transform.position, _playerVel, Color.red, 2.0f);
+                //Debug.DrawRay(transform.position, _playerVel, Color.blue, 2.0f);
                 Quaternion targetRot = Quaternion.LookRotation(_playerVel, Vector3.up);
                 targetRot = Quaternion.Euler(0.0f, 90.0f, 0.0f) * targetRot;
                 _modelTransform.rotation = Quaternion.Lerp(_modelTransform.rotation, targetRot, rotationSpeed * Time.deltaTime);

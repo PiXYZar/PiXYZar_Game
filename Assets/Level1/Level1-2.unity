@@ -19912,22 +19912,22 @@ PrefabInstance:
     - target: {fileID: 3258149917033020467, guid: 2965b0dafade2d54cb3b0642a58eac6f,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3258149917033020467, guid: 2965b0dafade2d54cb3b0642a58eac6f,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3258149917033020467, guid: 2965b0dafade2d54cb3b0642a58eac6f,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3258149917033020467, guid: 2965b0dafade2d54cb3b0642a58eac6f,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3258149917033020467, guid: 2965b0dafade2d54cb3b0642a58eac6f,
         type: 3}
@@ -19988,7 +19988,7 @@ PrefabInstance:
         type: 3}
       propertyPath: tower
       value: 
-      objectReference: {fileID: 512399511}
+      objectReference: {fileID: 2018931643}
     - target: {fileID: 4069427710981796741, guid: 2965b0dafade2d54cb3b0642a58eac6f,
         type: 3}
       propertyPath: runningSpeed
@@ -20004,11 +20004,16 @@ PrefabInstance:
       propertyPath: rotationSpeed
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 4069427710981796741, guid: 2965b0dafade2d54cb3b0642a58eac6f,
+        type: 3}
+      propertyPath: invertControls
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4069427710981796742, guid: 2965b0dafade2d54cb3b0642a58eac6f,
         type: 3}
       propertyPath: tower
       value: 
-      objectReference: {fileID: 512399511}
+      objectReference: {fileID: 2018931643}
     - target: {fileID: 4069427710981796742, guid: 2965b0dafade2d54cb3b0642a58eac6f,
         type: 3}
       propertyPath: offSet.x

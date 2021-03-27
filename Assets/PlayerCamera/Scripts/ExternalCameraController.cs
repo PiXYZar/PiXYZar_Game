@@ -152,12 +152,12 @@ public class ExternalCameraController : MonoBehaviour
 
         if (inside)
         {
-            Vector3 local = player.transform.position - tower.transform.position;
-            Vector3 updated = local.normalized * insideRadius;
+            //Vector3 local = player.transform.position - tower.transform.position;
+            //Vector3 updated = local.normalized * insideRadius;
 
-            //_targetPosition = tower.GetComponentInChildren<Collider>().bounds.center;
+            _targetPosition = tower.GetComponentInChildren<Collider>().bounds.center;            
             
-            _targetPosition = player.transform.position - updated;
+            //_targetPosition = player.transform.position - updated;
             _targetPosition.y = player.transform.position.y + offSet.y;
         }
         else
