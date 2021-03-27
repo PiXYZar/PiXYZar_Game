@@ -23,6 +23,8 @@ public class BlockShooterAI : MonoBehaviour
     bool walking = true;
     bool turn = false;
 
+    public bool canWalk = true;
+
     NavMeshAgent agent;
     Animator animator;
     EnemyGun weaponScript;
@@ -37,6 +39,8 @@ public class BlockShooterAI : MonoBehaviour
         weaponScript = GetComponentInChildren<EnemyGun>();
         agent = GetComponentInParent<NavMeshAgent>();
         animator = GetComponent<Animator>();
+
+        agent.speed = 0.1f;
     }
 
     private void Update()
@@ -63,7 +67,7 @@ public class BlockShooterAI : MonoBehaviour
                 
                 updatePath = 4;
             }
-            else if (walking)
+            else if (walking && canWalk)
             {
                 if (distanceToGoal < 3.0f)
                 {
@@ -83,7 +87,7 @@ public class BlockShooterAI : MonoBehaviour
             updatePath = updatePath - 1 * Time.deltaTime;
         }
 
-        if (distanceToGoal <= 3.0f)
+        if (distanceToGoal <= 3.0f || !walking)
         {
             agent.speed = 0.1f;
         }
