@@ -50,11 +50,11 @@ public class CheckpointSpawner : MonoBehaviour
             } 
             else
             {
-                _index += 1;
-                _previousCP = _checkpointList[_index - 1].position;
                 _checkpointList[_index - 1].gameObject.GetComponent<Animator>().SetBool("LIT", false);
-                _currentCP = _checkpointList[_index].position;
                 _checkpointList[_index].gameObject.GetComponent<Animator>().SetBool("LIT", true);
+                _index += 1;
+                _previousCP = _checkpointList[_index - 1].position;                
+                _currentCP = _checkpointList[_index].position;                
                 Debug.Log("[SUCCESS] Reached checkpoint number " + (_index - 1) + "/" + (_checkpointList.Count - 1));
             }
         }
@@ -63,7 +63,7 @@ public class CheckpointSpawner : MonoBehaviour
         if (_dead)
         {
             Debug.Log("[DEAD] Restarting at checkpoint number " + (_index - 1) + "/" + (_checkpointList.Count - 1)); 
-            Vector3 resetPosition = _previousCP + (transform.right * 4.0f);
+            Vector3 resetPosition = _previousCP + (_checkpointList[_index - 1].right * 5.0f);
             transform.position = resetPosition;
 
             float lavaPosition = transform.position.y - _lava.resetDistance;
