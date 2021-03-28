@@ -11,12 +11,13 @@ public class PusherAI : MonoBehaviour
 
     //float distanceToGoal;
 
+    Quaternion startRotation;
+    Vector3 startPosition;
+
     float updatePath;
 
-    //int updateTime = 5;
     float movementSpeed = 1;
 
-    //bool running = false;
     bool charging = false;
     //bool turn = false;
 
@@ -29,6 +30,9 @@ public class PusherAI : MonoBehaviour
         updatePath = 0;
         start = transform.position;
         //distanceToGoal = 100;
+
+        startRotation = transform.localRotation;
+        startPosition = transform.localPosition;
 
 
         agent = GetComponentInParent<NavMeshAgent>();
@@ -47,6 +51,8 @@ public class PusherAI : MonoBehaviour
                 //anim.Play("run");
                 charging = false;
                 agent.isStopped = false;
+                transform.localRotation = startRotation;
+                transform.localPosition = startPosition;
                 agent.speed = movementSpeed*11;
                 agent.destination = PlayerLocation;
                 updatePath = 4;

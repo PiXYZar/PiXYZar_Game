@@ -64,7 +64,9 @@ public class BlockShooterAI : MonoBehaviour
                 agent.isStopped = false;
                 agent.speed = 0.1f;
                 agent.destination = PlayerLocation;
-                
+
+                Debug.DrawRay(transform.parent.position, transform.parent.forward, Color.red, 4f);
+
                 updatePath = 4;
             }
             else if (walking && canWalk)
