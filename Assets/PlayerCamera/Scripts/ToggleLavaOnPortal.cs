@@ -11,7 +11,6 @@ public class ToggleLavaOnPortal : MonoBehaviour
     {
         planes = transform.Find("Planes");
         lava = GameObject.FindWithTag("Lava");
-        lava = GameObject.FindWithTag("Lava").GetComponent<LavaScript>().ResetToHeight(y);
     }
 
     // Update is called once per frame
