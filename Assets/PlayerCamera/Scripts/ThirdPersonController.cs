@@ -125,7 +125,7 @@ public class ThirdPersonController : PortalTraveller
 
         _mainCamera = transform.Find("Main Camera").GetComponent<Camera>();
 
-        _triggerField = tower.transform.Find("Trigger Field").gameObject;
+        _triggerField = invertedTower.transform.Find("Trigger Field").gameObject;
         Vector3 scale = _triggerField.transform.parent.localScale;
         scale.y = 0.0f;
         _radius = scale.magnitude;
@@ -286,26 +286,26 @@ public class ThirdPersonController : PortalTraveller
             Vector3 forward = new Vector3(xDir * zVel, 0.0f, zDir * zVel);
             Vector3 sideways = targetRotation * new Vector3(xDir * xVel, 0.0f, zDir * xVel);
 
-            if (invertControls)
-            {                
-                if (_insideTower && _exitedPortal)
-                {
-                    targetRotation = Quaternion.Euler(0.0f, Mathf.Abs(zVel) * -90.0f, 0.0f);
-                    forward = new Vector3(xDir * -xVel, 0.0f, zDir * -xVel);
-                    sideways = targetRotation * new Vector3(xDir * zVel, 0.0f, zDir * zVel);
+            // if (invertControls)
+            // {                
+            if (_insideTower)
+            {
+                targetRotation = Quaternion.Euler(0.0f, Mathf.Abs(zVel) * -90.0f, 0.0f);
+                forward = new Vector3(xDir * xVel, 0.0f, zDir * xVel);
+                sideways = targetRotation * new Vector3(xDir * zVel, 0.0f, zDir * zVel);
 
-                }
-                else
-                {
-                    targetRotation = Quaternion.Euler(0.0f, Mathf.Abs(zVel) * -90.0f, 0.0f);
-                    forward = new Vector3(xDir * xVel, 0.0f, zDir * xVel);
-                    sideways = targetRotation * new Vector3(xDir * zVel, 0.0f, zDir * zVel);
-                }
-               
             }
+                // else
+                // {
+                //     targetRotation = Quaternion.Euler(0.0f, Mathf.Abs(zVel) * -90.0f, 0.0f);
+                //     forward = new Vector3(xDir * xVel, 0.0f, zDir * xVel);
+                //     sideways = targetRotation * new Vector3(xDir * zVel, 0.0f, zDir * zVel);
+                // }
+               
+            //}
             //Debug.DrawRay(transform.position, forward, Color.red, 2.0f);
             //Debug.DrawRay(transform.position, sideways, Color.green, 2.0f);
-            Debug.DrawRay(tower.transform.position, playerLocal, Color.blue, 2.0f);
+            Debug.DrawRay(invertedTower.transform.position, playerLocal, Color.blue, 2.0f);
             _playerVel = (forward + sideways).normalized * speed;
 
 

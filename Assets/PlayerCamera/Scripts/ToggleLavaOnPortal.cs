@@ -10,7 +10,7 @@ public class ToggleLavaOnPortal : MonoBehaviour
     void Start()
     {
         planes = transform.Find("Planes");
-        lava = GameObject.FindWithTag("Lava");
+        lava = GameObject.Find("Plane");
     }
 
     // Update is called once per frame
