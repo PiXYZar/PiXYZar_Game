@@ -7,7 +7,7 @@ public class LavaScript : MonoBehaviour
     Vector3 orig;
     
     public bool rising = false;
-
+    public float resetDistance = 20.0f;
     public float raiseSpeed = 1;
     public float speedMultiplier = 1;
     // Start is called before the first frame update
