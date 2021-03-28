@@ -6,9 +6,9 @@ public class FadingPlatform : MonoBehaviour
 {
     [Header("Values to change the alpha")]
     [Tooltip("Upper range is the highest the alpha will rise to, can be set over 1 which will make the alpha 1 for a longer period of time")]
-    public float upperRange = 1.2f;
+    public float upperRange = 1.1f;
     [Tooltip("Lower range is the lowest the alpha will lower to, can be set under 0 which will make the alpha 0 for a longer period of time")]
-    public float lowerRange = 0.4f;
+    public float lowerRange = -0.1f;
     [Tooltip("Threshold under which the Collider is disabled")]
     public float threshold = 0.6f;
     [Tooltip("Speed at which the alpha changes")]

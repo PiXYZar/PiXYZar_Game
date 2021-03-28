@@ -10,6 +10,12 @@ public class MovingPlatform : MonoBehaviour
     public float speed = 0f;
     public float fall_speed = 0.05f;
 
+    [Header("Phase range")]
+    [Tooltip("Upper range is the highest the phase will rise to, can be set over 1 which will make the platform stay at the end position for a longer period of time")]
+    public float upperRange = 1.2f;
+    [Tooltip("Lower range is the lowest the phase will lower to, can be set under 0 which will make the platform stay at the beginning position for a longer period of time")]
+    public float lowerRange = 0.4f;
+
     // Working vars
     float phase = 0f;
     float phaseDir = 1f;
@@ -81,11 +87,11 @@ public class MovingPlatform : MonoBehaviour
         
         lastDisplacep = displacep;
         
-        if (phase >= 1)
+        if (phase >= upperRange)
         {
             phaseDir = -1;
         }
-        else if (phase <= 0)
+        else if (phase <= lowerRange)
         {
             phaseDir = 1;
         }
