@@ -64,7 +64,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b478ddcd28235ef4eb489d093163e8aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  graphicsObject: {fileID: 0}
+  graphicsObject: {fileID: 5379700509317757484}
   tower: {fileID: 0}
   userInputDelay: 0.1
   walkingSpeed: 7
@@ -324,7 +324,7 @@ PrefabInstance:
     - target: {fileID: 1965493505526489770, guid: de6fb2075351f9c478530e7e4ed29279,
         type: 3}
       propertyPath: m_TagString
-      value: Player
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 2920583981037652276, guid: de6fb2075351f9c478530e7e4ed29279,
         type: 3}
