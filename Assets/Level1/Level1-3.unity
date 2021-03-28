@@ -26922,7 +26922,7 @@ PrefabInstance:
     - target: {fileID: 8354015105962447043, guid: 2fd6e604bed83ac4e8a497475e949eac,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8354015105962447043, guid: 2fd6e604bed83ac4e8a497475e949eac,
         type: 3}
@@ -28967,7 +28967,7 @@ PrefabInstance:
     - target: {fileID: 3783958390203552894, guid: 0ba6e5452af66764782ab6d44c0917d2,
         type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3783958390203552894, guid: 0ba6e5452af66764782ab6d44c0917d2,
         type: 3}
@@ -34423,7 +34423,7 @@ PrefabInstance:
     - target: {fileID: 8354015105962447043, guid: 2fd6e604bed83ac4e8a497475e949eac,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8354015105962447043, guid: 2fd6e604bed83ac4e8a497475e949eac,
         type: 3}
@@ -58834,6 +58834,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rising: 0
+  resetDistance: 20
   raiseSpeed: 1
   speedMultiplier: 1
 --- !u!1001 &1630581496
@@ -79918,7 +79919,7 @@ PrefabInstance:
     - target: {fileID: 8353923036307212552, guid: b03da9634b59c9448b0a52d6df9e53dd,
         type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8353923036307212552, guid: b03da9634b59c9448b0a52d6df9e53dd,
         type: 3}
@@ -80012,7 +80013,7 @@ PrefabInstance:
     - target: {fileID: 5491515682473376565, guid: 9e26166d93500df49984a52141e59cd9,
         type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5491515682473376565, guid: 9e26166d93500df49984a52141e59cd9,
         type: 3}
@@ -83322,6 +83323,11 @@ PrefabInstance:
       propertyPath: tower
       value: 
       objectReference: {fileID: 512399511}
+    - target: {fileID: 133738613122764433, guid: 222d655a872a98e449c8eeda759468d0,
+        type: 3}
+      propertyPath: invertedTower
+      value: 
+      objectReference: {fileID: 2018931643}
     - target: {fileID: 133738613122764434, guid: 222d655a872a98e449c8eeda759468d0,
         type: 3}
       propertyPath: tower
@@ -83332,25 +83338,30 @@ PrefabInstance:
       propertyPath: walkingSpeed
       value: 9
       objectReference: {fileID: 0}
+    - target: {fileID: 133738613122764434, guid: 222d655a872a98e449c8eeda759468d0,
+        type: 3}
+      propertyPath: invertedTower
+      value: 
+      objectReference: {fileID: 2018931643}
     - target: {fileID: 1483344988021735716, guid: 222d655a872a98e449c8eeda759468d0,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1483344988021735716, guid: 222d655a872a98e449c8eeda759468d0,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -15.19
+      value: -580.3
       objectReference: {fileID: 0}
     - target: {fileID: 1483344988021735716, guid: 222d655a872a98e449c8eeda759468d0,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 114.86
+      value: -76.4
       objectReference: {fileID: 0}
     - target: {fileID: 1483344988021735716, guid: 222d655a872a98e449c8eeda759468d0,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -64.12
+      value: 61
       objectReference: {fileID: 0}
     - target: {fileID: 1483344988021735716, guid: 222d655a872a98e449c8eeda759468d0,
         type: 3}

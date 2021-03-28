@@ -8,6 +8,7 @@ public class ExternalCameraController : MonoBehaviour
     public float rotationalOffset;
     public GameObject player;
     public GameObject tower;
+    public GameObject invertedTower;
     public float smooth = 0.05f;
     public float changeOfViewSmooth = 0.5f;
     public Vector3 offSet;
@@ -40,6 +41,13 @@ public class ExternalCameraController : MonoBehaviour
     float GetAngle()
     {
         Vector3 playerLocal = tower.transform.InverseTransformPoint(player.transform.position);
+
+        if (_playerScript.InsideTower)
+        {
+            playerLocal = invertedTower.transform.InverseTransformPoint(transform.position);
+            //playerLocal.z = -playerLocal.z;
+        }
+
         float hyp = new Vector2(playerLocal.x, playerLocal.z).magnitude;
         return Mathf.Atan2(playerLocal.z, playerLocal.x) * 180.0f / Mathf.PI;
     }
@@ -155,7 +163,7 @@ public class ExternalCameraController : MonoBehaviour
             //Vector3 local = player.transform.position - tower.transform.position;
             //Vector3 updated = local.normalized * insideRadius;
 
-            _targetPosition = tower.GetComponentInChildren<Collider>().bounds.center;            
+            _targetPosition = invertedTower.GetComponentInChildren<Collider>().bounds.center;            
             
             //_targetPosition = player.transform.position - updated;
             _targetPosition.y = player.transform.position.y + offSet.y;

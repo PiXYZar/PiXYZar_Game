@@ -6,6 +6,8 @@ public class ThirdPersonController : PortalTraveller
 {
     public GameObject tower;
 
+    public GameObject invertedTower;
+
     public float userInputDelay = 0.1f;
 
     public float walkingSpeed = 3;
@@ -241,10 +243,16 @@ public class ThirdPersonController : PortalTraveller
         // local position of player wrt tower centre 
         Vector3 playerLocal = tower.transform.InverseTransformPoint(transform.position);
 
-        if (tower.gameObject.name == "Inverted Tower")
+        if (_insideTower)
         {
+            playerLocal = invertedTower.transform.InverseTransformPoint(transform.position);
             playerLocal.z = -playerLocal.z;
         }
+
+        //if (tower.gameObject.name == "Inverted Tower")
+        //{
+        //    playerLocal.z = -playerLocal.z;
+        //}
 
         // calculate x and z values for player movement 
         float hypotenuse = new Vector2(playerLocal.x, playerLocal.z).magnitude;
