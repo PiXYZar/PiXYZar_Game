@@ -28,6 +28,7 @@ public class CheckpointSpawner : MonoBehaviour
         _index = 1;
         transform.position = _previousCP = _checkpointList[_index - 1].position;
         _currentCP = _checkpointList[_index].position;
+        _checkpointList[0].gameObject.GetComponent<Animator>().SetBool("LIT", true);
     }
     
     void Update()
@@ -36,15 +37,19 @@ public class CheckpointSpawner : MonoBehaviour
         //Debug.Log(Vector3.Distance(transform.position, _currentCP));
         if (Vector3.Distance(transform.position, _currentCP) < checkpointThreshold)
         {
-            if (_index == _checkpointList.Count)
+            if (_index == _checkpointList.Count - 1)
             {
+                _checkpointList[_index - 1].gameObject.GetComponent<Animator>().SetBool("LIT", true);
                 Debug.Log("[SUCCESS] You've reached the end!");
+                _checkpointList[_index].gameObject.GetComponent<Animator>().SetBool("LIT", true);
             } 
             else
             {
                 _index += 1;
                 _previousCP = _checkpointList[_index - 1].position;
+                _checkpointList[_index - 1].gameObject.GetComponent<Animator>().SetBool("LIT", false);
                 _currentCP = _checkpointList[_index].position;
+                _checkpointList[_index].gameObject.GetComponent<Animator>().SetBool("LIT", true);
                 Debug.Log("[SUCCESS] Reached checkpoint number " + (_index - 1) + "/" + (_checkpointList.Count - 1));
             }
         }
