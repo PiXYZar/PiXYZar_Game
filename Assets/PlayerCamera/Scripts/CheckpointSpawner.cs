@@ -16,6 +16,9 @@ public class CheckpointSpawner : MonoBehaviour
     private LavaScript _lava;
 
     public bool Dead { get { return _dead; } }
+
+    FallingPlatformGroupResetter _fallings;
+    FallingPlatformGroupResetter _finalstretch;
     
     void Start()
     {
@@ -33,6 +36,9 @@ public class CheckpointSpawner : MonoBehaviour
         _checkpointList[0].gameObject.GetComponent<Animator>().SetBool("LIT", true);
 
         _lava = GameObject.FindWithTag("Lava").GetComponent<LavaScript>();
+
+        _fallings = GameObject.Find("Falling Platforms").GetComponent<FallingPlatformGroupResetter>();
+        _finalstretch = GameObject.Find("Final Stretch").GetComponent<FallingPlatformGroupResetter>();
     }
     
     void Update()
@@ -71,6 +77,11 @@ public class CheckpointSpawner : MonoBehaviour
                 lavaPosition = 0.0f;
             _lava.ResetToHeight(lavaPosition);
 
+            Rigidbody rb = transform.gameObject.GetComponent<Rigidbody>();
+            rb.velocity = Vector3.zero;
+
+            _fallings.resetPlatforms();
+            _finalstretch.resetPlatforms();
             _dead = false;
         }
     }
