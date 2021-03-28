@@ -61,11 +61,9 @@ public class BlockShooterAI : MonoBehaviour
                 weaponScript.setActive(shooting);
                 walking = false;
                 shooting = false;
-                agent.isStopped = false;
-                agent.speed = 0.1f;
-                agent.destination = PlayerLocation;
-
-                Debug.DrawRay(transform.parent.position, transform.parent.forward, Color.red, 4f);
+                agent.speed = 0f;
+                agent.isStopped = true;
+                this.transform.parent.LookAt(PlayerLocation);
 
                 updatePath = 4;
             }
@@ -75,6 +73,7 @@ public class BlockShooterAI : MonoBehaviour
                 {
                     turn = !turn;
                 }
+                agent.isStopped = false;
                 agent.speed = movementSpeed;
                 if (!turn)
                     agent.destination = goal.position;
@@ -91,7 +90,7 @@ public class BlockShooterAI : MonoBehaviour
 
         if (distanceToGoal <= 3.0f || !walking)
         {
-            agent.speed = 0.1f;
+            agent.speed = 0f;
         }
 
         //Checks the distance to the goal and turns the
@@ -123,7 +122,7 @@ public class BlockShooterAI : MonoBehaviour
             if (updatePath <= 0.5f && shooting == false)
             {
                 shooting = true;
-                agent.speed = 0.1f;
+                agent.speed = 0f;
                 agent.isStopped = false;
                 animator.SetBool("Shooting", shooting);
                 updatePath = 0.5f;
