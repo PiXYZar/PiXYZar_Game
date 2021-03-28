@@ -21,7 +21,7 @@ public class TickAI : MonoBehaviour
     public float movementSpeed = 2;
     public float attachDuration = 8;
     public float attackDelay = 4;
-    public float massAddedToPlayer = 1;
+    public float speedReductionToPlayer = 2;
 
     float attackDistance = 10.0f;
 
@@ -52,7 +52,9 @@ public class TickAI : MonoBehaviour
         if (updatePath <= 0 && attached)
         {
             Transform player = gameObject.transform.parent.parent;
-            player.gameObject.GetComponent<Rigidbody>().mass = player.GetComponent<Rigidbody>().mass -= 1;
+            player.gameObject.GetComponent<ThirdPersonController>().walkingSpeed += speedReductionToPlayer;
+            player.gameObject.GetComponent<ThirdPersonController>().runningSpeed += speedReductionToPlayer;
+            player.gameObject.GetComponent<ThirdPersonController>().jumpingSpeed += speedReductionToPlayer;
             gameObject.transform.parent.parent = null;
             transform.parent.gameObject.AddComponent<Rigidbody>();
             gameObject.GetComponentInParent<Rigidbody>().isKinematic = true;
@@ -100,7 +102,9 @@ public class TickAI : MonoBehaviour
 
     public void collidedWithPlayer(GameObject other)
     {
-        other.GetComponentInParent<Rigidbody>().mass = other.GetComponentInParent<Rigidbody>().mass += massAddedToPlayer;
+        other.gameObject.GetComponent<ThirdPersonController>().walkingSpeed -= speedReductionToPlayer;
+        other.gameObject.GetComponent<ThirdPersonController>().runningSpeed -= speedReductionToPlayer;
+        other.gameObject.GetComponent<ThirdPersonController>().jumpingSpeed -= speedReductionToPlayer;
         Destroy(gameObject.GetComponentInParent<Rigidbody>());
         Debug.Log("attached");
         attached = true;
