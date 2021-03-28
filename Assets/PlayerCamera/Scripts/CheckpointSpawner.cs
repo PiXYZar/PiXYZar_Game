@@ -63,7 +63,8 @@ public class CheckpointSpawner : MonoBehaviour
         if (_dead)
         {
             Debug.Log("[DEAD] Restarting at checkpoint number " + (_index - 1) + "/" + (_checkpointList.Count - 1)); 
-            transform.position = _previousCP;
+            Vector3 resetPosition = _previousCP + (transform.right * 4.0f);
+            transform.position = resetPosition;
 
             float lavaPosition = transform.position.y - _lava.resetDistance;
             if (lavaPosition < 0)

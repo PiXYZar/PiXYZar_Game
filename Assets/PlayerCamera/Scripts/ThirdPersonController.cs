@@ -67,6 +67,9 @@ public class ThirdPersonController : PortalTraveller
 
     private bool _frozen;
     private FreezeTrap _freezeTrap;
+
+    private bool _hasKey;
+    public bool HasKey { get { return _hasKey; } set { _hasKey = value; } }
    
 
     void Awake()
@@ -125,6 +128,8 @@ public class ThirdPersonController : PortalTraveller
         scale.y = 0.0f;
         _radius = scale.magnitude;
         _center = _triggerField.GetComponent<CapsuleCollider>().center;
+
+        _hasKey = false;
     }
 
     bool IsFacingPortal()
