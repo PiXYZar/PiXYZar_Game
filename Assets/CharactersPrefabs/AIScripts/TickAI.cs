@@ -48,8 +48,24 @@ public class TickAI : MonoBehaviour
 
     private void Update()
     {
-        // Only update the path planning of 
-        if (updatePath <= 0 && !attached)
+        // Only update the path planning of
+        if (updatePath <= 0 && attached)
+        {
+            Transform player = gameObject.transform.parent.parent;
+            player.gameObject.GetComponent<Rigidbody>().mass = player.GetComponent<Rigidbody>().mass -= 1;
+            gameObject.transform.parent.parent = null;
+            transform.parent.gameObject.AddComponent<Rigidbody>();
+            gameObject.GetComponentInParent<Rigidbody>().isKinematic = true;
+            attached = false;
+            agent.enabled = true;
+            agent.isStopped = false;
+            transform.localRotation = startRotation;
+            transform.localPosition = startPosition;
+            gameObject.GetComponent<Collider>().enabled = true;
+            gameObject.transform.parent.parent = null;
+
+        }
+        else if (updatePath <= 0 && !attached)
         { 
             if (running)
             {
@@ -72,20 +88,6 @@ public class TickAI : MonoBehaviour
             }
 
         }
-        else if (updatePath <= 0 && attached)
-        {
-            Transform player = gameObject.transform.parent.parent;
-            player.gameObject.GetComponent<Rigidbody>().mass = player.GetComponent<Rigidbody>().mass -= 1;
-            gameObject.transform.parent.parent = null;
-            attached = false;
-            agent.enabled = true;
-            agent.isStopped = false;
-            transform.localRotation = startRotation;
-            transform.localPosition = startPosition;
-            gameObject.GetComponent<Collider>().enabled = true;
-            gameObject.transform.parent.parent = null;
-            
-        }
         else
         {
             // -1 every second
@@ -99,6 +101,7 @@ public class TickAI : MonoBehaviour
     public void collidedWithPlayer(GameObject other)
     {
         other.GetComponentInParent<Rigidbody>().mass = other.GetComponentInParent<Rigidbody>().mass += massAddedToPlayer;
+        Destroy(gameObject.GetComponentInParent<Rigidbody>());
         Debug.Log("attached");
         attached = true;
         running = false;
