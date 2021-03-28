@@ -25,8 +25,8 @@ public class LavaScript : MonoBehaviour
         }
     }
 
-    private void ResetToHeight(float y)
+    public void ResetToHeight(float y)
     {
-        transform.position = new Vector3(0, y, 0);
+        transform.position = new Vector3(orig.x, y, orig.z);
     }
 }

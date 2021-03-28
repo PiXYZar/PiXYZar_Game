@@ -13,6 +13,8 @@ public class CheckpointSpawner : MonoBehaviour
     private bool _dead;
     private int _index;
 
+    private LavaScript _lava;
+
     public bool Dead { get { return _dead; } }
     
     void Start()
@@ -29,6 +31,8 @@ public class CheckpointSpawner : MonoBehaviour
         transform.position = _previousCP = _checkpointList[_index - 1].position;
         _currentCP = _checkpointList[_index].position;
         _checkpointList[0].gameObject.GetComponent<Animator>().SetBool("LIT", true);
+
+        _lava = GameObject.FindWithTag("Lava").GetComponent<LavaScript>();
     }
     
     void Update()
@@ -59,13 +63,19 @@ public class CheckpointSpawner : MonoBehaviour
         {
             Debug.Log("[DEAD] Restarting at checkpoint number " + (_index - 1) + "/" + (_checkpointList.Count - 1)); 
             transform.position = _previousCP;
+
+            float lavaPosition = transform.position.y - 10.0f;
+            if (lavaPosition < 0)
+                lavaPosition = 0.0f;
+            _lava.ResetToHeight(lavaPosition);
+
             _dead = false;
         }
     }
 
-    void OnCollisionEnter(Collision collision)
+    void OnTriggerEnter(Collider collider)
     {
-        if (collision.collider.gameObject.tag == "Lava")
+        if (collider.gameObject.tag == "Lava")
         {
             _dead = true;
         }

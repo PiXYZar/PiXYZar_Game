@@ -69,7 +69,6 @@ public class ThirdPersonController : PortalTraveller
     private FreezeTrap _freezeTrap;
    
 
-
     void Awake()
     {
         // check if asset has rigid body, if yes, store it 
