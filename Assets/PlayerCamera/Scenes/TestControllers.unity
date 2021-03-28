@@ -6106,6 +6106,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rising: 1
+  resetDistance: 20
   raiseSpeed: 3
   speedMultiplier: 1
 --- !u!65 &1974993885
@@ -6211,7 +6212,7 @@ PrefabInstance:
     - target: {fileID: 9092991846339837472, guid: 756aa6eb48adbd742a4eeceea2ac6af0,
         type: 3}
       propertyPath: rising
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9092991846339837472, guid: 756aa6eb48adbd742a4eeceea2ac6af0,
         type: 3}

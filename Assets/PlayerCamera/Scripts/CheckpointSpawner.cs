@@ -46,6 +46,7 @@ public class CheckpointSpawner : MonoBehaviour
                 _checkpointList[_index - 1].gameObject.GetComponent<Animator>().SetBool("LIT", true);
                 Debug.Log("[SUCCESS] You've reached the end!");
                 _checkpointList[_index].gameObject.GetComponent<Animator>().SetBool("LIT", true);
+                _previousCP = _checkpointList[_index].position;
             } 
             else
             {
