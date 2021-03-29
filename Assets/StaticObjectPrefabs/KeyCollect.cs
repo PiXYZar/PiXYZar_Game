@@ -20,7 +20,6 @@ public class KeyCollect : MonoBehaviour
             {
                 if (other.gameObject.GetComponent<ThirdPersonController>().HasKey)
                 {
-                    other.gameObject.GetComponent<ThirdPersonController>().HasKey = false;
                     Destroy(gameObject);
                 }
             }
